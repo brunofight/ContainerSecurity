@@ -19,7 +19,9 @@ jobs:
         run: |
           mkdir output  # create output dir
           # this will also include README.md
+          cd ./Doc
           echo "files=$(printf '"%s" ' *.md)" >> $GITHUB_OUTPUT
+          cd ../output
           
       - uses: docker://pandoc/latex:2.9
         with:
