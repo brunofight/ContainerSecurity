@@ -13,10 +13,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v2
-      
-      - name: download eisvogel template
-        run: wget https://raw.githubusercontent.com/Wandmalfarbe/pandoc-latex-template/master/eisvogel.tex
-      
+           
       - name: create file list
         id: files_list
         run: |
@@ -27,8 +24,7 @@ jobs:
       - uses: docker://pandoc/latex:2.9
         with:
           args: 
-            --output=output/result.pdf ${{ steps.files_list.outputs.files }}
-            --template eisvogel.tex
+            --output=output/result.pdf ${{ steps.files_list.outputs.files }}            
           
       - uses: actions/upload-artifact@master
         with:
