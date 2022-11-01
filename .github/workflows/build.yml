@@ -2,10 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ "main" ]
-
-  workflow_dispatch:
-
+    branches:
+      - main
+  
 jobs:
   build:
     # The type of runner that the job will run on
@@ -13,12 +12,20 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      - name: Run a multi-line script
+      - uses: actions/checkout@v2
+      
+      - name: create file list
+        id: files_list
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          mkdir output  # create output dir
+          # this will also include README.md
+          echo "::set-output name=files::$(printf '"%s" ' *.md)"
+          
+      - uses: docker://pandoc/latex:2.9
+        with:
+          args: --output=output/result.pdf ${{ steps.files_list.outputs.files }}
+          
+      - uses: actions/upload-artifact@master
+        with:
+          name: output
+          path: output
