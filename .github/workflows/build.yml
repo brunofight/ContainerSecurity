@@ -32,10 +32,7 @@ jobs:
         with:
           name: output
           path: output
-      
-      - name: "Determine tag"
-        run: "echo \"RELEASE_TAG=${GITHUB_REF#refs/tags/}\" >> $GITHUB_ENV"
-      
+       
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
