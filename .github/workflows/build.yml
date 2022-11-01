@@ -17,10 +17,8 @@ jobs:
       - name: create file list
         id: files_list
         run: |
-          # this will also include README.md
-          cd ./Doc
-          mkdir output  # create output dir
-          echo "files=$(printf '"%s" ' *.md)" >> $GITHUB_OUTPUT
+          mkdir output 
+          echo "files=$(for f in *.md; do printf ./Doc/$f; echo; done)" >> $GITHUB_OUTPUT
                     
       - uses: docker://pandoc/latex:2.9
         with:
