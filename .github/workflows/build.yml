@@ -18,10 +18,8 @@ jobs:
         id: files_list
         run: |
           mkdir output 
-          cd ./Doc
-          echo "files=$(for f in *.md; do printf ./Doc/$f; echo; done)" >> $GITHUB_OUTPUT
-          cd ..
-                    
+          echo "files=$(for f in ./Doc/*.md; do printf $f; echo; done)" >> $GITHUB_OUTPUT
+                              
       - uses: docker://pandoc/latex:2.9
         with:
           args: 
