@@ -18,14 +18,13 @@ jobs:
         id: files_list
         run: |
           mkdir output 
-          echo "files=$(for f in Doc/*.md; do readlink -f $f ;printf ' '; done)" >> $GITHUB_OUTPUT
+          echo "files=$(for f in Doc/*.md; do printf $f ;printf ' '; done)" >> $GITHUB_OUTPUT
                               
       - uses: docker://pandoc/latex:2.9
         with:
           args: 
             --output=output/result.pdf ${{ steps.files_list.outputs.files }}   
             --table-of-contents
-            -M date="`date "+%B%e, %Y"`"
           
       - uses: actions/upload-artifact@master
         with:
