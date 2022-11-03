@@ -1,0 +1,8 @@
+# Einleitung
+
+- primäres Anliegen Grundlage für operative IT-Sicherheit von Container-Infrastruktur
+- sekundär Erfüllung BSI SYS.1.6 für Betreiber von kritischen Infrastrukturen
+  - BSI hat Stand 2022 noch keine Umsetzungshinweise für den Baustein SYS.1.6 Containerisierung [BSI19]
+- Containerisierung kann ein Sicherheitsgewinn gewinn sein in Bezug auf MicroServices und Observability
+
+
