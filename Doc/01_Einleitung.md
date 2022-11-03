@@ -1,6 +1,9 @@
-# Motivation
+# 1. Einleitung
 
-Betrachtung von Angriffsvektoren und möglichen Mitigationsstrategien von Containern und Container-Orchestrierung im **technischen** und **prozessualen Kontext**.
+- primäres Anliegen Grundlage für operative IT-Sicherheit von Container-Infrastruktur
+- sekundär Erfüllung BSI SYS.1.6 für Betreiber von kritischen Infrastrukturen
+  - BSI hat Stand 2022 noch keine Umsetzungshinweise für den Baustein SYS.1.6 Containerisierung [BSI19]
+- Containerisierung kann ein Sicherheitsgewinn gewinn sein in Bezug auf MicroServices und Observability
 
 ## Technischer Kontext
 
@@ -88,17 +91,3 @@ Betrachtung typischer Konfigurationsfehler, z.B.:
 - sensitive Informationen in Dockerfiles, jeder Entwickler darf Dockerfiles editieren (s. Docker RUN...)
 
 
-## Quellen
-
-- CIS Docker Benchmark
-- BSI Baustein SYS 1.6
-- Container Security (Liz Rice, 2020, O'Reilly)
-- https://isovalent.com/blog/post/2021-11-container-escape/
-- https://kubernetes.io/
-
-
-
-
-
-  
-  

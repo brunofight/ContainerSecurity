@@ -25,7 +25,9 @@ jobs:
       - uses: docker://pandoc/latex:2.9
         with:
           args: 
-            --output=output/result.pdf ${{ steps.files_list.outputs.files }}            
+            --output=output/result.pdf ${{ steps.files_list.outputs.files }}   
+            --table-of-contents
+            -M date="`date "+%B%e, %Y"`"
           
       - uses: actions/upload-artifact@master
         with:
