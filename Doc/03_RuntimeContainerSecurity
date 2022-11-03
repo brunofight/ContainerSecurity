@@ -1,0 +1,8 @@
+# 3. Containersicherheit zur Laufzeit
+
+- Konfiguration
+- Container Isolation (capabilities, cgroups, namespaces)
+- Netzwerk
+- Side-Car Container
+
+- im Kontext eines Kubernetes-Clusters
