@@ -12,6 +12,14 @@ Aus diesem Grund werden zunächst die Mechanismen zur Erfüllung der Container I
 
 ## 2.1 Container Isolation
 
+Eine funktionierende Container Isolation setzt voraus, dass ein Container keine anderen auf dem gleichen Kernel laufenden Container oder sonstige Host-Prozesse negativ beeinflussen kann. Zusammengefasst lässt sich diese erreichen durch
+
+| Linux (Befehl/Konzept) | Zweck | Beschreibung |
+|-----|-----|-----|
+| cgroups | Ressourcenbeschränkung | Limitierung des Speicher-, Netzwerk-, CPU-Verbrauchs oder auch Beschränkung der maximalen Anzahl an Kindprozessen. <br> *Cgroups* werden in ``/sys/fs/cgroup`` erstellt. Das Anlegen eines neuen Ordners in bspw. ``/sys/fs/cgroup/memory`` und Schreiben der PID im darin befindlichen ``cgroup.procs`` bindet einen Prozess an diese *cgroup*. |
+| namespaces | Sichtbarkeitsbeschränkung | Mit dem Befehl ``unshare`` lassen sich Kindprozesse erstellen, die nicht den *namespace* des Elternprozesses übernehmen. Hierüber erhält ein Prozess (Container) u.a. ein vom Host unabhängiges Netzwerk-Interface, Prozess-Nummerierung und Mount-Points|
+| chroot | Sichtbarkeitsbeschränkung | *Namespaces* alleine reichen nicht aus, um eine vollständige Sichtbarkeitsbeschränkung zu erreichen. Das liegt daran, dass Prozesse nach wie vor aus den Verzeichnissen ``/proc`` und ``/mnt`` lesen. Mit ``chroot`` wird das Wurzelverzeichnis eines Prozesses verlegt, sodass dieser nicht mehr auf die Verzeichnisse des Hosts zugreifen kann. In diesem Schritt ist jedoch zugleich der ``/bin``-Ordner unsichtbar geworden, wodurch innerhalb des Prozesses keine weiteren Befehle mehr ausgeführt werden können. Genau hierfür verwendet man *Container Images*, eine rudimentäre Verzeichnisstruktur, welche im Idealfall nur die notwendigen Befehle zur Ausführung der darin befindlichen Anwendung enthält. |
+| capabilities | Fähigkeitsbeschränkung |  |
 
 
 ## 2.2 Immutable Containers
