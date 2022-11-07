@@ -1,28 +1,19 @@
 # 1. Einleitung
 
+Containerisierte Anwendungen haben mit der Einführung von Docker (2013) einen großen Aufschwung erlebt. Schnelle Deployment-Zeiten, hohe Portabilität nach dem Prinzip "Build once, run anywhere" und Ressourceneffizienz machen die neue Technologie attraktiver als herkömmliche Virtualisierung. Insbesondere der geringe Speicherbedarf eines einzelnen Containers ermöglicht erst praktikable MicroService-Architekturen.
+
+Während ein Großteil der Privatwirtschaft bereits seit einigen Jahren von den Vorzügen der Containerisierung profitiert, haben Betreiber Kritischer Infrastrukturen sich, mangels Sicherheitsvorgaben des BSI, von der Thematik fern gehalten. Wie sich in der Ausarbeitung herausstellen wird sind Container nur oberflächlich mit Virtuellen Maschinen vergleichbar.
+
+Erst in der 2022 Version des IT-Grundschutzkompendiums wurden Sicherheitsvorgaben für Containerisierung in einem Baustein (SYS.1.6) erfasst. Umsetzungshinweise gibt es bisher nicht. 
+
+
+
 - primäres Anliegen Grundlage für operative IT-Sicherheit von Container-Infrastruktur
-- sekundär Erfüllung BSI SYS.1.6 für Betreiber von kritischen Infrastrukturen
-  - BSI hat Stand 2022 noch keine Umsetzungshinweise für den Baustein SYS.1.6 Containerisierung [BSI19]
 - Containerisierung kann ein Sicherheitsgewinn gewinn sein in Bezug auf MicroServices und Observability
 
 ## Technischer Kontext
 
-- Container sind Prozesse mit eigener **cgroup** und eigenen **namespaces** auf einer Linux-Distribution
-  - **cgroups** limitieren die Systemressourcen für eine Gruppe von Prozessen (Speicher, erlaubte Anzahl von Prozessen, Netzwerkbandbreite, ...)
-  - **namespaces** beschränken die Sichtbarkeit von "file-like"-Ressourcen (``unshare``)
-     - Nutzer und Gruppen
-     - UTS (Unix Timeharing System)
-     - Prozess IDs
-     - cgroups
-     - mounts
-     - Interprozess-Kommunikation
-     - Netzwerk (wird im Nachhinein mit einem virtuellen Ethernet-Paar an Host angebunden)
-     
-  - mit ``chroot`` wird das /-Verzeichnis auf einen anderen Ordner verlegt (mit eigenem /proc, /bin, usw.); dieses Verzeichnis mit rudimentärer Basisausstattung an Applikationen ist im Endeffekt ein **Container Image**
-  
-- des weiteren sind Linux Capabilities auf ein notwendiges Minimum zu beschränken
-  
-Diese Maßnahmen erreichen den gewünschten Effekt der **Container-Isolation**. Das heißt ein (kompromittierter) Container soll nicht in der Lage sein den Host oder andere Container zu beeinflussen. Offensichtlich bedeutet das nicht, dass ein kompromittierter Host die darauf befindlichen Container nicht beeinflussen kann, denn diese sind lediglich Prozesse aus seiner Sicht.
+(migriert zu 2. ) 
 
 Somit sind traditionelle Angriffsvektoren auf den Host gleichzeitig Angriffsvektoren auf die darauf laufenden Container:
 
