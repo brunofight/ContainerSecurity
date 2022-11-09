@@ -24,8 +24,19 @@ Eine funktionierende Container Isolation setzt voraus, dass ein Container keine 
 
 ## 2.2 Immutable Containers
 
+Bei einer Gruppe von Containern handelt es sich genau dann um *Immutable Container*, wenn diese vom gleichen Image stammen und zur Laufzeit identisches Verhalten aufweisen. Somit sollten Container unter keinen Umständen:
 
+- neue Code-Versionen oder Abhängigkeiten zur Laufzeit herunterladen
+    - das ist sowohl aus Sicherheitsgründen, als auch aus Gründen der Wartbarkeit und Fehlerreproduzierbarkeit untragbar.
+- Prozesse starten, die nicht für die Ausführung der Anwendung benötigt werden
+    - das schließt insbesondere die schlechte Praxis zu Wartungszwecken eine Shell auf einem Container zu starten mit ein.
 
-## 2.3 Container-Orchestrierung
+Unter der Voraussetzung eines *Immutable Container* müssen Schwachstellenscans (bzw. Image Scans) nur in der Container Registry ausgeführt werden.
+
+Viele Container-Infrastrukturen nehmen die Unveränderlichkeit von Containern als Prämisse an, ohne diese technisch garantieren zu können. Zu diesem Zweck sollten *Container Image Profiles* eingesetzt werden (s. Kapitel 3). Hierdurch offenbart sich ein maßgeblicher Sicherheitsgewinn bei der Entwicklung von Microservice-Architekturen gegenüber Monolithen. Es ist viel einfacher möglich festzustellen, was ein Microservice (Container) machen soll und darf und dementsprechend genau diese Aktivitäten in einer Whitelist zu erfassen. [Rice20]
+
+## 2.3 Container Runtime
+
+## 2.4 Container-Orchestrierung
 
 
