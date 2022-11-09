@@ -22,8 +22,8 @@ jobs:
           echo; echo "Input Folder Listing"
           ls
           echo; echo "Generating PDF"
-          for f in *.md; do cat $f; echo; done | md-to-pdf > ../_output/blue-paper.pdf
-          cd ../_output
+          for f in *.md; do cat $f; echo; done | md-to-pdf > ../output/result.pdf
+          cd ../output
           echo; echo "Output Folder Listing"
           ls
           cd ..
