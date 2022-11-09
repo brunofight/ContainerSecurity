@@ -2,8 +2,8 @@ name: CI
 
 on:
   push:
-    #tags:
-    #  - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
   
 jobs:
   build:
@@ -13,24 +13,22 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - uses: actions/checkout@v2
-                                   
-      - name: Build book
-        run: |-
-          npm install -g md-to-pdf
-          mkdir -p output
-          cd Doc
-          echo; echo "Input Folder Listing"
-          ls
-          echo; echo "Generating PDF"
-          for f in *.md; do cat $f; echo; done | md-to-pdf > ../output/result.pdf
-          cd ../output
-          echo; echo "Output Folder Listing"
-          ls
-          cd ..
+           
+      - name: create file list
+        id: files_list
+        run: |
+          mkdir output 
+          echo "files=$(for f in Doc/*.md; do printf $f ;printf ' '; done)" >> $GITHUB_OUTPUT
+                              
+      - uses: docker://pandoc/latex:2.9
+        with:
+          args: 
+            --output=output/result.pdf ${{ steps.files_list.outputs.files }}   
+            --table-of-contents
           
       - uses: actions/upload-artifact@master
         with:
-          name: result
+          name: output
           path: output
        
       - name: Create Release
