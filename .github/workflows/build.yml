@@ -2,8 +2,8 @@ name: CI
 
 on:
   push:
-    tags:
-      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+    #tags:
+    #  - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
   
 jobs:
   build:
@@ -20,15 +20,19 @@ jobs:
           mkdir output 
           echo "files=$(for f in Doc/*.md; do printf $f ;printf ' '; done)" >> $GITHUB_OUTPUT
                               
-      - uses: docker://pandoc/latex:2.9
+      - uses: baileyjm02/markdown-to-pdf@v1
         with:
-          args: 
-            --output=output/result.pdf ${{ steps.files_list.outputs.files }}   
-            --table-of-contents
+          input_dir: Doc
+          output_dir: pdfs
+          images_dir: Doc/images
+          # for example <img src="./images/file-name.png">
+          image_import: ./images
+          # Default is true, can set to false to only get PDF files
+          build_html: false
           
       - uses: actions/upload-artifact@master
         with:
-          name: output
+          name: result.pdf
           path: output
        
       - name: Create Release
