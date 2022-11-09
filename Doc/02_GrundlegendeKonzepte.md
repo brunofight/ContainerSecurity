@@ -35,7 +35,15 @@ Unter der Voraussetzung eines *Immutable Container* müssen Schwachstellenscans 
 
 Viele Container-Infrastrukturen nehmen die Unveränderlichkeit von Containern als Prämisse an, ohne diese technisch garantieren zu können. Zu diesem Zweck sollten *Container Image Profiles* eingesetzt werden (s. Kapitel 3). Hierdurch offenbart sich ein maßgeblicher Sicherheitsgewinn bei der Entwicklung von Microservice-Architekturen gegenüber Monolithen. Es ist viel einfacher möglich festzustellen, was ein Microservice (Container) machen soll und darf und dementsprechend genau diese Aktivitäten in einer Whitelist zu erfassen. [Rice20]
 
-## 2.3 Container Runtime
+## 2.3 Container Runtime 
+
+Der Begriff *Container Runtime* ist überladen und wird oftmals synonym für high-level *Container Runtimes* (wie containerd, CRI-O) verwendet, welche wiederum eine low-level *Container Runtime* (in der Regel runC) einbeziehen. 
+
+Die high-level *Container Runtime* ist für das herunterladen von Container Images aus einer Registry, die Verwaltung von Mounts und Speichern, sowie das Ausführen von Containern über eine OCI-konforme *low-level Container Runtime* zuständig. Anschließend erstellt und führt die low-level *Container Runtime* die containerisierten Prozesse aus. [Dono21]
+
+Um die dafür notwendigen Aufgaben (s. 2.1) zu erledigen, muss eine *Container Runtime* zwingend mit Root-Rechten laufen. 
+
+Was nun noch fehlt ist eine Schnittstelle zur Interaktion mit der *Container Runtime*, also das *Container Runtime Interface* (CRI). Das CRI kann in Form einer Kommandozeile (``docker``) oder über eine API gegeben sein. Genau hierein fügt sich die Implikation, dass unprivilegierte Nutzer mit Zugriff auf das CRI faktisch privilegierte Nutzer sind (s. Kapitel 3). [Rice20]
 
 ## 2.4 Container-Orchestrierung
 
