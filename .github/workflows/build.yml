@@ -14,20 +14,24 @@ jobs:
     steps:
       - uses: actions/checkout@v2
                                    
-      - uses: baileyjm02/markdown-to-pdf@v1
-        with:
-          input_dir: Doc
-          output_dir: pdfs
-          images_dir: Doc/images
-          # for example <img src="./images/file-name.png">
-          image_import: ./images
-          # Default is true, can set to false to only get PDF files
-          build_html: false
+      - name: Build book
+        run: |-
+          npm install -g md-to-pdf
+          mkdir -p _output
+          cd Doc
+          echo; echo "Input Folder Listing"
+          ls
+          echo; echo "Generating PDF"
+          for f in *.md; do cat $f; echo; done | md-to-pdf > ../_output/blue-paper.pdf
+          cd ../_output
+          echo; echo "Output Folder Listing"
+          ls
+          cd ..
           
       - uses: actions/upload-artifact@master
         with:
-          name: Doc
-          path: pdfs
+          name: result
+          path: output
        
       - name: Create Release
         id: create_release
@@ -46,6 +50,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: ./pdfs/Doc.pdf
+          asset_path: ./output/result.pdf
           asset_name: ContainerSecurity.pdf
           asset_content_type: application/pdf
