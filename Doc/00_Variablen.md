@@ -1,4 +1,5 @@
 ---
+stylesheet: https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css
 pdf_options:
   format: a4
   margin: 30mm 20mm
@@ -17,8 +18,8 @@ pdf_options:
   footerTemplate: |-
     <section>
       <div>
-        Page <span class="pageNumber"></span>
-        of <span class="totalPages"></span>
+        Seite <span class="pageNumber"></span>
+        von <span class="totalPages"></span>
       </div>
     </section>
 ---
