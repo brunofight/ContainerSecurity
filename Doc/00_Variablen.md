@@ -1,5 +1,5 @@
 ---
-stylesheet: https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.10.0/github-markdown.min.css
+stylesheet: https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown.min.css
 pdf_options:
   format: a4
   margin: 30mm 20mm
