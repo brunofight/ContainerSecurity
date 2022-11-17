@@ -15,7 +15,7 @@ getcaps <PID>
 
 ## 7.2 Tools
 
-### 7.2.1 Minikube
+### 7.2.1 Docker Installation
 
 1. Installation Container Runtime (hier Docker) [DInst]
 
@@ -34,21 +34,15 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 ```
 
-2. Installation Minikube [MK8Inst]
+### 7.2.2 Minikube
+
+Donwload Minikube über [MK8Inst].
 
 ```bash
-curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-sudo install minikube-linux-amd64 /usr/local/bin/minikube
+minikube start --driver=virtualbox
+minikube config set driver virtualbox
 ```
 
-3. Systemanforderungen in VMM überprüfen (hier VirtualBox)
 
-> Ändern --> System --> Prozessor (Anpassung nur möglich, wenn VM ausgeschaltet)
-> mindestens 2 Prozessoren
-
-
-
-- Sammlung hilfreicher Tools im Zusammenhang mit Container (Sicherheit)
-  - auch Linux-Befehle, etc.
 
 Buildah, Connaiseur, Dive, Grype, Skopeo, eBPF
