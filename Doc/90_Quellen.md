@@ -4,12 +4,14 @@
 - [BSI22], [IT-Grundschutzkompendium Edition 2022](https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Grundschutz/Kompendium/IT_Grundschutz_Kompendium_Edition2022.pdf?__blob=publicationFile&v=3)
 - [Buildah], [Buildah Image Builder](https://buildah.io/), Containers Organisation
 - [Connaiseur], [Connaiseur Kubernetes Admission Controller](https://github.com/sse-secure-systems/connaisseur), SSE Secure Systems
+- [DInst], [Install Docker Engine on Debian](https://docs.docker.com/engine/install/debian/), docs.docker.com
 - [Dive], [Dive Image Explorer](https://github.com/wagoodman/dive), Alex Goodman, Github
 - [Dono21], [Die Unterschiede zwischen Docker, containerd, CRI-O und runc](https://www.kreyman.de/index.php/others/linux-kubernetes/232-unterschiede-zwischen-docker-containerd-cri-o-und-runc), Tom Donohue, 12.07.2021
 - [HTCap], [Linux Capabilities](https://book.hacktricks.xyz/linux-hardening/privilege-escalation/linux-capabilities), Carlos Polop
 - [Knecht19], [Using Multi-Stage Builds to Simplify And Standardize Build Processes](https://medium.com/capital-one-tech/multi-stage-builds-and-dockerfile-b5866d9e2f84), Sven Hans Knecht, 14.03.2019
 - [Grype], [Grype Image Scanner](https://github.com/anchore/grype), Alex Goodman, Github
 - [Isov21], [Detecting a Container Escape with Cilium and eBPF](https://isovalent.com/blog/post/2021-11-container-escape/), Isovalent Blog, 16.11.2021
+- [MK8Inst], [minikube start](https://minikube.sigs.k8s.io/docs/start/), minikube, 15.11.2022
 - [Mouat19], [Linux Capabilities in Practice](https://blog.container-solutions.com/linux-capabilities-in-practice), Adrian Mouat, 25.09.2019
 - [MS21], [Secure containerized environments with updated threat matrix for Kubernetes](https://www.microsoft.com/en-us/security/blog/2021/03/23/secure-containerized-environments-with-updated-threat-matrix-for-kubernetes/), Yossi Weizmann, 23.03.2021
 - [OWASP], [Docker Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html), OWASP Cheat Sheet Series
