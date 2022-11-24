@@ -13,6 +13,7 @@
 - [Knecht19], [Using Multi-Stage Builds to Simplify And Standardize Build Processes](https://medium.com/capital-one-tech/multi-stage-builds-and-dockerfile-b5866d9e2f84), Sven Hans Knecht, 14.03.2019
 - [Grype], [Grype Image Scanner](https://github.com/anchore/grype), Alex Goodman, Github
 - [Isov21], [Detecting a Container Escape with Cilium and eBPF](https://isovalent.com/blog/post/2021-11-container-escape/), Isovalent Blog, 16.11.2021
+- [KICS], [Keeting Infrastructure as Code secure](https://kics.io/)
 - [MK8Inst], [minikube start](https://minikube.sigs.k8s.io/docs/start/), minikube, 15.11.2022
 - [Mouat19], [Linux Capabilities in Practice](https://blog.container-solutions.com/linux-capabilities-in-practice), Adrian Mouat, 25.09.2019
 - [MS21], [Secure containerized environments with updated threat matrix for Kubernetes](https://www.microsoft.com/en-us/security/blog/2021/03/23/secure-containerized-environments-with-updated-threat-matrix-for-kubernetes/), Yossi Weizmann, 23.03.2021
