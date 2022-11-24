@@ -17,6 +17,7 @@
 - [Mouat19], [Linux Capabilities in Practice](https://blog.container-solutions.com/linux-capabilities-in-practice), Adrian Mouat, 25.09.2019
 - [MS21], [Secure containerized environments with updated threat matrix for Kubernetes](https://www.microsoft.com/en-us/security/blog/2021/03/23/secure-containerized-environments-with-updated-threat-matrix-for-kubernetes/), Yossi Weizmann, 23.03.2021
 - [OWASP], [Docker Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html), OWASP Cheat Sheet Series
+- [OWASPCD], [OWASP Top 10 CI/CD Security Risks](https://owasp.org/www-project-top-10-ci-cd-security-risks/), Daniel Krivelevich, Omer Gil, OWASP
 - [Rice20], Container Security, Liz Rice, O'Reilly, 2020
 - [Rice22], What is eBPF - An Introduction to a New Generation of Networking, Security, and Observability Tools, Liz Rice, O'Reilly, 13.04.2022
 - [Skopeo], [Skopeo](https://github.com/containers/skopeo), Github Containers Open Repository for Container Tools
