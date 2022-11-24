@@ -6,7 +6,7 @@ Das fertige Container Image wird anschließend entweder direkt ausgerollt oder z
 
 Dementsprechend sind den Verifikationsmaßnahmen von Container-Images ein hohes Gewicht beizumessen. In den folgenden Unterkapiteln werden 4 Maßnahmen beschrieben, um sowohl das Deployment schadhafter Container zu verhindern als auch Schwachstellen und Fehlkonfigurationen zu vermeiden.
 
-![Abbildung: Container Images in CI/CD](/Images/Container_CICD.png)
+![Abbildung: Container Images in CI/CD](./Images/Container_CICD.png)
 
 
 ## 4.1 Image Signatur und Verifikation
