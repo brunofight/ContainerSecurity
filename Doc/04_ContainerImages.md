@@ -20,6 +20,13 @@ Dementsprechend sind den Verifikationsmaßnahmen von Container-Images ein hohes 
 ## 4.3 Image Scanning
 
 aqua, trivy
+
+```
+trivy fs
+trivy image
+trivy repo
+```
+
 - Container Registry
 
 ## 4.4 Sicherungsmaßnahmen im Build-Prozess
