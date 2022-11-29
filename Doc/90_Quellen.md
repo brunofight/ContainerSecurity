@@ -1,11 +1,13 @@
 # Literaturverzeichnis
 
+- [Abbassi], [Building Container Images with Podman and Buildah](https://www.giantswarm.io/blog/building-container-images-with-podman-and-buildah), Puja Abbassi, 12.08.2019, GiantSwarm
 - [ATT&CK], [Containers Matrix](https://attack.mitre.org/matrices/enterprise/containers/), MITRE ATT&CK, 01.04.2022
 - [BSI22], [IT-Grundschutzkompendium Edition 2022](https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Grundschutz/Kompendium/IT_Grundschutz_Kompendium_Edition2022.pdf?__blob=publicationFile&v=3)
 - [Buildah], [Buildah Image Builder](https://buildah.io/), Containers Organisation
 - [Cilium], [eBPF-based Networking, Observability, Security](cilium.io), Isovalent
 - [Connaiseur], [Connaiseur Kubernetes Admission Controller](https://github.com/sse-secure-systems/connaisseur), SSE Secure Systems
 - [DInst], [Install Docker Engine on Debian](https://docs.docker.com/engine/install/debian/), docs.docker.com
+- [Distr], ["Distroless" Container Images](https://github.com/GoogleContainerTools/distroless), GoogleContainerTools, Github
 - [Dive], [Dive Image Explorer](https://github.com/wagoodman/dive), Alex Goodman, Github
 - [Dono21], [Die Unterschiede zwischen Docker, containerd, CRI-O und runc](https://www.kreyman.de/index.php/others/linux-kubernetes/232-unterschiede-zwischen-docker-containerd-cri-o-und-runc), Tom Donohue, 12.07.2021
 - [eBPF], [eBPF](https://ebpf.io/)

@@ -11,6 +11,22 @@ Dennoch lohnt es sich einige herkömmliche Ansätze zur Berechtigungsrestriktion
 
 ## 3.2 Secure Computing Mode (seccomp)
 
+Der Linux-Kernel stellt mit Secure Computing Mode (seccomp) ein Feature zur Beschränkung der von einem Prozess ausführbaren syscalls bereit. 
+
+- default docker seccomp Profile --> 44 syscalls blockiert
+- 2022 ca. 400 syscalls
+- laut aquasec benötigt Container zw. 40 und 70 syscalls --> default Profile unzureichend
+- docker seccomp json dokument
+  - SCMP_ACT_KILL, SCMP_ACT_TRAP, SCMP_ACT_ERRNO, trace, allow, log
+- strace verwenden um syscalls eines containers zu profilen ``strace -qc time``, ``strace -c -f -S name time 2>1&1 1>/dev/null | tail -n +3 | head -n -2 | awk '{print $(NF)}'``
+
+
+```bash
+# cyberbit training
+sudo docker run --security-opt seccomp=/home/cyberuser/profiles/violation.json --name cyberbit -dit busybox:latest
+
+strace -c -f -S name <command line name> 2>&1 1>/dev/null | tail -n +3 | head -n -2 | awk '{print $(NF)}'
+```
 
 ## 3.3 Linux Security Modules
 
