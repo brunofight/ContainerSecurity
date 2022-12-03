@@ -28,13 +28,13 @@ Es gibt eine Vielzahl von Lösungen zur Realisierung einer privaten Container Re
 
 Einige Container Registries, die diese Bedingungen erfüllen wären:
 
-- [Harbor Container Registry]{https://goharbor.io/}
+- [Harbor Container Registry](https://goharbor.io/)
   - Opensource
   - hohe Kompatibilität zu anderen Repositories (Replication Adapters) und Image Scannern (Scanner Adapters)
-- [Nexus Repository]{https://de.sonatype.com/products/container?topnav=true}
+- [Nexus Repository](https://de.sonatype.com/products/container?topnav=true)
   - vor allem interessant als Gesamtlösung im CI/CD-Prozess (Bereitstellung von language Packages, SBOM-Validierung, Nexus Container Security)
-- [Red Hat Quay]{https://www.redhat.com/en/technologies/cloud-computing/quay}
-- [Docker private registry server]{https://docs.docker.com/registry/deploying/}
+- [Red Hat Quay](https://www.redhat.com/en/technologies/cloud-computing/quay)
+- [Docker private registry server](https://docs.docker.com/registry/deploying/)
   - erfordert hohes Maß an eigenständiger Konfiguration um 3 und 4 zu erfüllen
 
 
