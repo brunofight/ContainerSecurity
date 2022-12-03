@@ -19,6 +19,8 @@
 
 ### SYS.1.6.A6 Verwendung sicherer Images
 
+Diese Anforderung ist eng gekoppelt mit SYS.1.6.A12 und SYS.1.6.A14 und wird mit den Hinweisen zu diesen zwei Anforderungen erfüllt.
+
 ### SYS.1.6.A7 Persistenz von Protokollierungsdaten der Container
 
 ### SYS.1.6.A8 Sichere Speicherung von Zugangsdaten bei Containern
@@ -37,6 +39,9 @@ Mittels eines Admission Controllers lässt sich überprüfen, ob ein Container-I
 
 ### SYS.1.6.A12 Verteilung sicherer Images
 
+Hier empfiehlt sich ein Auftragsprozess zur Beantragung neuer Basis-Images, die für den Betrieb benötigt werden. Somit ist der Prprozess ordentlich dokumentiert und es sind stets nur Basis-Images im Einsatz, die zuvor auch geprüft wurden. Zugleich sollte im Freigabeprozess überprüft werden, ob nicht ein bereits verifiziertes Basis-Image verwendet werden kann. An diesem Prozess sollte das Security Operations Center beteiligt werden.
+
+Sämtliche auf diesem Weg hinzugefügte Basis-Images werden mit einer Notary-Signatur versehen (s. Kapitel 4.1)
 
 ### SYS.1.6.A13 Freigabe von Images
 
