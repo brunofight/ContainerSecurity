@@ -13,6 +13,7 @@
 - [eBPF], [eBPF](https://ebpf.io/)
 - [Helm], [Helm - The package manager for Kubernetes](https://helm.sh/)
 - [HTCap], [Linux Capabilities](https://book.hacktricks.xyz/linux-hardening/privilege-escalation/linux-capabilities), Carlos Polop
+- [K8S_IMG], [Images](https://kubernetes.io/docs/concepts/containers/images/), 13.11.2022
 - [Knecht19], [Using Multi-Stage Builds to Simplify And Standardize Build Processes](https://medium.com/capital-one-tech/multi-stage-builds-and-dockerfile-b5866d9e2f84), Sven Hans Knecht, 14.03.2019
 - [Grype], [Grype Image Scanner](https://github.com/anchore/grype), Alex Goodman, Github
 - [Isov21], [Detecting a Container Escape with Cilium and eBPF](https://isovalent.com/blog/post/2021-11-container-escape/), Isovalent Blog, 16.11.2021
