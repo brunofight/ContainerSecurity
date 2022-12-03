@@ -42,6 +42,14 @@ Mittels eines Admission Controllers lässt sich überprüfen, ob ein Container-I
 
 ### SYS.1.6.A14 Aktualisierung von Images
 
+Container Images werden in der privaten Container Registry auf Schwachstellen gescannt und falls erforderlich aktuallisierte Basis-Images geprüft und heruntergeladen. Unabhängig davon, ob das Basis-Image, eine Dependency oder der Quelltext selbst eine Schwachstelle enthält, muss die selbstenwickelte Container-Anwendung neu gebaut werden und deren Funktionalität erneut getestet werden. Eine vollständige Automatisierung von Updates, wie es beim Patchmanagement externer Anwendungen, Dienste und des Betriebssystems selbst üblich ist, kann für die CI/CD-Pipeline nicht sinnvoll umgesetzt werden. Schließlich sind die Entwickler (und kein externer Hersteller) in der Pflicht zu prüfen, ob mit einem Update der Abhängigkeiten die Schnittstelle des Containers semantisch gleich bleibt.
+
+Schwachstellen und Updates im Basis-Image lassen sich mitunter komplett vermeiden, wenn in einem Multi-Stage-Build lediglich die Binary einer Anwendung im Container vorliegt. Ansonsten können diese zumindest maßgeblich durch die Verwendung minimaler Images (wie bspw. distroles) reduziert werden.
+
+So verlockend es auch scheint in Kubernetes die ``imagePullPolicy`` auf ``Always`` zu setzen oder innerhalb eines Deplyoments (bzw. Pods) auf ein Image mit dem ``:latest``-Tag zu verweisen, ist ein solches Vorgehen nicht empfehlenswert. Dieser Herstellerhinweis ist begründet durch damit einhergehende Erschwerung des Rollback-Mechanismus und Prüfung der aktuell verwendeten Image-Version im Cluster. [K8_IMG]
+
+Für genauere Informationen zu den beschriebenen Konzepten, kann in Kapitel 4 nachgesehe werden.
+
 ### SYS.1.6.A15 Limitierung der Ressourcen pro Container
 
 Die Container-Orchestrierung Kubernetes stellt hierfür zwei Konzepte bereit **Resource Quotas** und **Limit Ranges**. Mit **Resource Quotas** lassen sich Obergrenzen für gesamte **namespaces** definieren. Innerhalb eines **namespace** könnte somit ein einzelner Pod die gesamten Ressourcen der zugewiesenen **Resource Quota** an sich reißen. Hier erlauben **Limit Ranges** eine Begrenzung der Ressourcen auf Granularität einzelner Pods. 
