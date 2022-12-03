@@ -37,12 +37,19 @@ Einige Container Registries, die diese Bedingungen erfüllen wären:
 - [Docker private registry server](https://docs.docker.com/registry/deploying/)
   - erfordert hohes Maß an eigenständiger Konfiguration um 3 und 4 zu erfüllen
 
+## 4.3 Helm Repository
 
-## 4.3 Admission Control
+Auch das Sammelsurium an YAML-Konfigurationsdateien zur Definition von Deployments, Services, Nutzern, Volumes und weiteren Kubernetes-Komponenten sollte zentral abgespeichert werden, sodass einerseits deren Konfiguration auditiert und andererseits die Wiederverwendbarkeit von Kubernetes-Komponenten verbessert wird.
+
+**Helm Charts** haben sich als Format für Kubernetes-YAML-Dateien etabliert. Genauso wie Dockerhub von der Allgemeinheit genutzt werden kann um Container Images zu teilen, erlaubt Artifacthub die Bereitstellung von Helm Charts. Somit müssen öffentliche Helm Charts gleichermaßen geprüft werden, bevor sie in ein lokales Repository gezogen werden. [Helm]
+
+Sowohl Harbor, als auch Nexus können mit als Helm Repository verwendet werden.
+
+## 4.4 Admission Control
 
 (Connaiseur)
 
-## 4.4 Image Scanning
+## 4.5 Image Scanning
 
 aqua, trivy
 
@@ -54,7 +61,7 @@ trivy repo
 
 - Container Registry
 
-## 4.5 Hinweise zum Build-Prozess und der Gestaltung von Images
+## 4.6 Hinweise zum Build-Prozess und der Gestaltung von Images
 
 In Kapitel 3 wurde bereits das Thema **Immutable Containers** und Möglichkeiten für die Durchsetzung dieses Prinzips zur Laufzeit besprochen. Die beschriebenen Maßnahmen können tiefergreifend verstärkt werden, indem ein Container Image auch nur die Laufzeitumgebung und Bibliotheken enthält, die die Anwendung benötigt. Selbst das minimalistische Basis-Image **Alpine** enthält eine große Menge von typischen Linux-Befehlen wie ``ls``, ``cat``, ``mount`` und ``sh``, welche einem Angreifer genügend Möglichkeiten bieten, um sich auf dem System umzusehen und ggf. seine Privilegien zu eskalieren. **Reverse Shells** greifen üblicherweise darauf zurück einen Shell-Prozess zu starten. Das heißt, würde man die Shell-Binary garnicht erst im Container bereithalten, ist es auch wesentlich schwieriger die Anwendung als solche zu kompromittieren. 
 
@@ -89,6 +96,9 @@ EXPOSE 3000
 CMD ["hello_express.js"]
 ```
 
-
-
 - kics, rootless builds, buildah
+
+
+
+
+
