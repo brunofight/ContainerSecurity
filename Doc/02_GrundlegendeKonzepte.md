@@ -8,7 +8,7 @@ Aus dem Winkel der IT-Sicherheit betrachtet ergibt sich mit Containern wiederum 
 
 Je nach Version des verwendeten Linux Kernels besteht dieser aus 20 - 35 Millionen Zeilen Quelltext. Es ist durchaus möglich und unter Umständen auch gewollt Containern geteilte Ressourcen zur Verfügung zu stellen. Prozesse können i.A. auch andere Prozesse sehen. Zusammengefasst bedeutet das, dass mit Zunahme der Konfigurationsmöglichkeiten das Potenzial für eine Schwachstelle im Kernel Code oder eine Fehlkonfiguration steigt. [Rice20], [WiLK]
 
-Aus diesem Grund werden zunächst die Mechanismen zur Erfüllung der Container Isolation in Kapitel 2.1 vorgestellt (weitergehende Härtungsmaßnahmen s. 3.). Kapitel 2.2 befasst sich mit der Unveränderlichkeit von Containern, einer weiteren wünschenswerten Eigenschaft von Containern und in 2.3 wird ein grober Einblick in die Terminologie von Kubernetes, der vorherrschenden Container-Orchestrierungslösung gegeben.
+Aus diesem Grund werden zunächst die Mechanismen zur Erfüllung der Container Isolation in Kapitel 2.1 vorgestellt (weitergehende Härtungsmaßnahmen s. 3.). Kapitel 2.2 befasst sich mit der Unveränderlichkeit von Containern, einer weiteren wünschenswerten Eigenschaft von Containern und in 2.3 wird ein grober Einblick in die Terminologie von Kubernetes, der marktführenden Container-Orchestrierungslösung gegeben.
 
 ## 2.1 Container Isolation
 
@@ -47,4 +47,31 @@ Was nun noch fehlt ist eine Schnittstelle zur Interaktion mit der *Container Run
 
 ## 2.4 Container-Orchestrierung
 
+Sobald etwas komplexere Microservice-Architekturen oder einfacher ausgedrückt der Bedarf an containerisierten Anwendungen im Unternehmen zunimmt, gelangt man aus administrativer Sicht schnell an Grenzen. Das wird unter anderem deutlich bei der Aktualisierung einer laufenden Container-Umgebung, wo das Vorgehen schematisch wie folgt abläuft:
 
+```bash
+docker ps 
+docker stop <containerName>
+docker rm <containerName>
+docker run <neuesImage> --name <containerName>
+# Vorgehen für jeden Container im Deployment wiederholen
+```
+
+Mit Kubernetes ist lediglich eine Anpassung in der zugehörigen ``deployment.yaml`` vorzunehmen und diese anschließend mit ``kubectl apply -f deployment.yaml`` auszurollen. Die Orchestrierung garantiert, dass das zugrundeliegende redundant aufgesetzte Deployment während des Rollouts stets laufende Container enthält. Des Weiteren erkennt und behandelt Kubernetes automatisch abgestürzte Container und startet diese wieder.
+
+Zur Realisierung solcher Aufgaben basiert Kubernetes auf einer komplexen Architektur aus **Nodes** und darauf laufenden Diensten (s. Abbildung). Auf den **Nodes** laufen letztendlich die **Pods**, eine Abstraktionsschicht für mehrere Container im gleichen *namespace*.
+
+![Abbildung: Kubernetes Node-Architektur [K8S_Arc]](Doc/Images/componentes-of-kubernetes.png)
+
+In der Control Plane bzw. auf dem sogenannten Master-Node laufen folgende Dienste:
+
+- **API-Server**: Schnittstelle zur Interaktion mit dem Cluster
+- **Controller Manager**: Monitoring auf Abweichungen vom Soll-Zustand des Clusters und Propagierung von Maßnahmen zur Wiederherstellung an die Worker-Nodes
+- **Scheduler**: Verteilung neuer Pods auf Worker-Nodes basierend auf deren Auslastung
+- **etcd**: Key-Value-Store, welcher den Zustand des Clusters abspeichert, sodass der Controller Manager Änderungen erkennen kann
+
+Controller Manager und Scheduler interagieren mit dem **kubelet**-Dienst auf den Worker-Nodes. Dieser setzt die angefragten Änderungen in der vorliegenden **Container Runtime** (bspw. containerd oder CRI-O) um. Abschließend läuft auf den Worker-Nodes noch der **kube-proxy**, welcher die Netzwerkregeln zur Kommunikation der Pods untereinander (mittels *services*) oder mit der Außenwelt (mittels *ingress*) geltend macht. Dabei greift der kube-proxy auf den Paketfilter des Betriebssystems zurück, also bei Unix-Derivaten *iptables*. [K8S_Arc]
+
+Auf Grundlage dieser Architektur können Deployments basierend auf einer Vielzahl von Konzepten wie *ReplicaSets*, *Services*, *Ingress*, *Volumes*, *PersistentVolumeClaims*, *Secrets*, *ConfigMaps*, *LimitRanges*, *ResourceQuotas*, *Namespaces* und *Policies* konfiguriert werden. *Namespaces* haben im Kontext von Kubernetes übrigens nichts mit den zuvor erwähnten Linux-Namespaces zu tun. Kubernetes-Namespaces dienen der 
+
+Von besonderer Relevanz für die Sicherheit des Clusters sind dabei *LimitRanges* und *ResourceQuotas*, welche das Konzept von *cgroups* auf Pod- bzw. Namespace-Ebene
