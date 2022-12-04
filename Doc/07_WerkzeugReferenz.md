@@ -13,6 +13,11 @@ getcaps <PID>
 
 ### 7.1.2 Syscalls
 
+
+```
+strace -c -f -S name <command/ app name> 2>&1 1>/dev/null | tail -n +3 | head -n -2 | awk '{print $(NF)}'
+```
+
 ## 7.2 Tools
 
 ### 7.2.1 Docker Installation
