@@ -61,7 +61,7 @@ Mit Kubernetes ist lediglich eine Anpassung in der zugehörigen ``deployment.yam
 
 Zur Realisierung solcher Aufgaben basiert Kubernetes auf einer komplexen Architektur aus **Nodes** und darauf laufenden Diensten (s. Abbildung). Auf den **Nodes** laufen letztendlich die **Pods**, eine Abstraktionsschicht für mehrere Container im gleichen *namespace*.
 
-![Abbildung: Kubernetes Node-Architektur [K8S_Arc]](Doc/Images/componentes-of-kubernetes.png)
+![Abbildung: Kubernetes Node-Architektur [K8S_Arc]](Doc/Images/componentes-of-kubernetes.svg)
 
 In der Control Plane bzw. auf dem sogenannten Master-Node laufen folgende Dienste:
 
