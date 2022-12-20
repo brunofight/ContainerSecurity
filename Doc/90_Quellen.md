@@ -23,12 +23,14 @@
 - [MK8Inst], [minikube start](https://minikube.sigs.k8s.io/docs/start/), minikube, 15.11.2022
 - [Mouat19], [Linux Capabilities in Practice](https://blog.container-solutions.com/linux-capabilities-in-practice), Adrian Mouat, 25.09.2019
 - [MS21], [Secure containerized environments with updated threat matrix for Kubernetes](https://www.microsoft.com/en-us/security/blog/2021/03/23/secure-containerized-environments-with-updated-threat-matrix-for-kubernetes/), Yossi Weizmann, 23.03.2021
+- [Notary], [Notary](https://github.com/notaryproject/notary), notaryproject
 - [OWASP], [Docker Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html), OWASP Cheat Sheet Series
 - [OWASPCD], [OWASP Top 10 CI/CD Security Risks](https://owasp.org/www-project-top-10-ci-cd-security-risks/), Daniel Krivelevich, Omer Gil, OWASP
 - [Rice20], Container Security, Liz Rice, O'Reilly, 2020
 - [Rice22], What is eBPF - An Introduction to a New Generation of Networking, Security, and Observability Tools, Liz Rice, O'Reilly, 13.04.2022
 - [Skopeo], [Skopeo](https://github.com/containers/skopeo), Github Containers Open Repository for Container Tools
 - [SYS1.6], [SYS.1.6 Containerisierung](https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Grundschutz/IT-GS-Kompendium_Einzel_PDFs_2022/07_SYS_IT_Systeme/SYS_1_6_Containerisierung_Edition_2022.pdf?__blob=publicationFile&v=3), Bundesamt für Sicherheit in der Informationstechnik, Februar 2022
+- [TUF], [The Update Framework Specification](https://theupdateframework.github.io/specification/latest/), Version 1.0.31, 09.09.2022
 - [WiLK], [Linux Kernel](https://en.wikipedia.org/wiki/Linux_kernel), Wikipedia, 23. Oktober 2023
 - [Xen19], [Xen 4.12 shrinks code, beefs up security, rethinks x86 support](https://www.theregister.com/2019/04/04/xen_412_release/), Max Smolaks, The Register, 04.04.2019
 
