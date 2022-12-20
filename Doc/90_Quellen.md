@@ -29,6 +29,7 @@
 - [OWASPCD], [OWASP Top 10 CI/CD Security Risks](https://owasp.org/www-project-top-10-ci-cd-security-risks/), Daniel Krivelevich, Omer Gil, OWASP
 - [Rice20], Container Security, Liz Rice, O'Reilly, 2020
 - [Rice22], What is eBPF - An Introduction to a New Generation of Networking, Security, and Observability Tools, Liz Rice, O'Reilly, 13.04.2022
+- [Siegert], [Ensure Content Trust on Kubernetes using Notary and Open Policy Agent](https://siegert-maximilian.medium.com/ensure-content-trust-on-kubernetes-using-notary-and-open-policy-agent-485ab3a9423c#97b0), Maximilian Siegert, 21.06.2020
 - [Skopeo], [Skopeo](https://github.com/containers/skopeo), Github Containers Open Repository for Container Tools
 - [SYS1.6], [SYS.1.6 Containerisierung](https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Grundschutz/IT-GS-Kompendium_Einzel_PDFs_2022/07_SYS_IT_Systeme/SYS_1_6_Containerisierung_Edition_2022.pdf?__blob=publicationFile&v=3), Bundesamt für Sicherheit in der Informationstechnik, Februar 2022
 - [TUF], [The Update Framework Specification](https://theupdateframework.github.io/specification/latest/), Version 1.0.31, 09.09.2022
