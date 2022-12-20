@@ -11,6 +11,10 @@ Dementsprechend sind den Verifikationsmaßnahmen von Container-Images ein hohes 
 
 ## 4.1 Image Signatur und Verifikation
 
+Mit einer Image Signatur kann gewährleistet werden, dass ein aus einer Container Registry bezogenes Image auch dasselbe ist, welches zuvor im CI/CD-Prozess erzeugt wurde. Ohne Signatur könnte ein Angreifer mit Zugriff auf die Registry schadhafte Image-Imitate bereitstellen.
+
+An dieser Stelle ist von der Image Digest abzugrenzen. Bei diesem handelt es sich um den Hash eines Image Manifests. Darin sind wiederum alle Layer eines Container Images mit ihrem jeweiligen Hash (*digest*) enthalten. Zusammengefasst ist es somit möglich ein spezifisches Container Image über dessen *Digest* aus einer Registry zu pullen und folglich auch dessen Integrität darüber sicherzustellen. Dennoch ist es keine gängige Praxis Images über deren Hash zu identifizieren
+
 (TUF, Notary)
 
 ## 4.2 Container Registry
