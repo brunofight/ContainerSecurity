@@ -13,9 +13,15 @@ Dementsprechend sind den Verifikationsmaßnahmen von Container-Images ein hohes 
 
 Mit einer Image Signatur kann gewährleistet werden, dass ein aus einer Container Registry bezogenes Image auch dasselbe ist, welches zuvor im CI/CD-Prozess erzeugt wurde. Ohne Signatur könnte ein Angreifer mit Zugriff auf die Registry schadhafte Image-Imitate bereitstellen.
 
-An dieser Stelle ist von der Image Digest abzugrenzen. Bei diesem handelt es sich um den Hash eines Image Manifests. Darin sind wiederum alle Layer eines Container Images mit ihrem jeweiligen Hash (*digest*) enthalten. Zusammengefasst ist es somit möglich ein spezifisches Container Image über dessen *Digest* aus einer Registry zu pullen und folglich auch dessen Integrität darüber sicherzustellen. Dennoch ist es keine gängige Praxis Images über deren Hash zu identifizieren
+An dieser Stelle ist von der Image Digest abzugrenzen. Bei diesem handelt es sich um den Hash eines Image Manifests. Darin sind wiederum alle Layer eines Container Images mit ihrem jeweiligen Hash (*digest*) enthalten. Zusammengefasst ist es somit möglich ein spezifisches Container Image über dessen *Digest* aus einer Registry zu pullen und folglich auch dessen Integrität darüber sicherzustellen. Allerdings wäre in der Praxis ein solches Vorgehen wohl kaum anzutreffen. Ähnlich wie in der Beziehung von IP-Adresse zu FQDN ist es handlicher mit einem menschenlesbaren *Tag* zu arbeiten. Ein *Tag* referenziert einen spezifischen Image Digest; dieser Verweis ist variabel (insbesondere bei dem ``:latest`` Tag). Demzufolge kann über einen manipulierten *Tag*-Verweis unbemerkt ein schadhaftes Image gezogen werden. [Rice20], [Docker]
 
-(TUF, Notary)
+Das generelle Vorgehen zur Signatur von Container Images wird von *The Update Framework* (TUF) abgeleitet. Zumeist kommt *Notary* als Implementierung dieser Spezifiaktion zum Einsatz. Das Framework basiert im Kern auf einer rollenbasierten Hierarchie von asymmetrischen Schlüsselpaaren (wie in einer PKI), womit sich Metadaten signieren lassen. [TUF], [Notary]
+
+Der *Notary*-Dienst besteht aus dem *Notary Server*, welcher signierte Metadaten in einer Datenbank abspeichert und Signatur-Requests an den *Notary Signer* delegiert (s. Abbildung). [NotArc]
+
+![Abbildung: Notary Architektur](Doc/Images/Notary.png)
+
+Während Docker mit den Parametern ``DOCKER_CONTENT_TRUST`` und ``DOCKER_CONTENT_TRUST_SERVER`` sich für die Einbindung eines Notary-Dienstes konfigurieren lässt, bietet Kubernetes selbst aktuell keine native Unterstützung hierfür. Stattdessen muss hier die Aufgabe der Signaturverifikation an einen **Admission Controller** (s. Kapitel 4.4) ausgelagert werden. Dabei ist es sinnvoll den *Notary*-Service (bestehend aus Notary-Signer und Notary-Server) selbst innerhalb des Kubernetes-Clusters bereitzustellen. [Siegert]
 
 ## 4.2 Container Registry
 
@@ -51,7 +57,7 @@ Sowohl Harbor, als auch Nexus können mit als Helm Repository verwendet werden.
 
 ## 4.4 Admission Control
 
-(Connaiseur)
+(Connaiseur, OPA)
 
 ## 4.5 Image Scanning
 
