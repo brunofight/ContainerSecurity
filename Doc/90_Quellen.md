@@ -23,6 +23,7 @@
 - [MK8Inst], [minikube start](https://minikube.sigs.k8s.io/docs/start/), minikube, 15.11.2022
 - [Mouat19], [Linux Capabilities in Practice](https://blog.container-solutions.com/linux-capabilities-in-practice), Adrian Mouat, 25.09.2019
 - [MS21], [Secure containerized environments with updated threat matrix for Kubernetes](https://www.microsoft.com/en-us/security/blog/2021/03/23/secure-containerized-environments-with-updated-threat-matrix-for-kubernetes/), Yossi Weizmann, 23.03.2021
+- [NotArc], [Understand the Notary Service Architecture](https://github.com/notaryproject/notary/blob/master/docs/service_architecture.md#threat-model), 19.02.2019
 - [Notary], [Notary](https://github.com/notaryproject/notary), notaryproject
 - [OWASP], [Docker Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html), OWASP Cheat Sheet Series
 - [OWASPCD], [OWASP Top 10 CI/CD Security Risks](https://owasp.org/www-project-top-10-ci-cd-security-risks/), Daniel Krivelevich, Omer Gil, OWASP
