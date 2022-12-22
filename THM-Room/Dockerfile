@@ -11,7 +11,6 @@ COPY package*.json ./
 RUN npm install
 
 COPY ./public ./public
-COPY ./node_modules ./node_modules
 COPY ./views ./views
 COPY app.js .
 
