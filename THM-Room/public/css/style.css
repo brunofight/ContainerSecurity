@@ -1,0 +1,135 @@
+* {
+    box-sizing: border-box;
+    font-family: "helvetica neue", Arial, sans-serif;
+    font-size: 16px;
+}
+
+:root {
+    
+    --main-bg-color: #262626;
+    --light-bg-color: #BFBFBF;
+    --medium-bg-color: #595959;
+    --accent-color: #BF4545;
+    --accent-color-dark: #D92B3A; 
+    --info-color: #518ed9;
+}
+
+body {
+    background-color: var(--main-bg-color);
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: center;
+}
+
+.panel, .login {
+    background-color: #ffffff;
+    box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
+}
+
+.panel {
+    width: 600px;
+    margin: 20px auto;
+}
+
+.login {
+    width: 400px;    
+    margin: 100px auto;
+}
+h1 {
+    text-align: center;
+    color: var(--medium-bg-color);
+    font-size: 24px;
+    padding: 10px 0 10px 0;
+    border-bottom: 1px solid var(--light-bg-color);
+}
+
+p {
+    text-align: center;
+    color: #000;
+    font-style: italic;
+    font-size: 16px;
+    padding: 10px;
+    margin: 0px 5px 0px 5px;
+    background-color: var(--info-color);
+    border-radius: 5px;
+}
+
+.code {
+    font-family: Consolas, Lucida Console, Liberation Mono;
+    background-color: #BFBFBF;
+    color: var(--accent-color-dark);
+    padding: 0px 3px 0px 3px;
+}
+
+.login div {
+    text-align: center;
+    color: #000;
+    font-size: 16px;
+    padding: 20px 0 20px 0;
+    border-bottom: 1px solid var(--light-bg-color);
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 20px;
+}
+form input[type="password"], form input[type="text"] {
+    width: 310px;
+    height: 50px;
+    border: 1px solid var(--light-bg-color);
+    margin-bottom: 20px;
+    padding: 0 15px;
+}
+form input[type="submit"] {
+    width: 100%;
+    padding: 15px;
+   margin-top: 20px;
+    background-color: var(--accent-color);
+    border: 0;
+    cursor: pointer;
+    font-weight: bold;
+    color: #ffffff;
+    transition: background-color 0.2s;
+}
+form input[type="submit"]:hover {
+  background-color: var(--accent-color-dark);
+    transition: background-color 0.2s;
+}
+
+ul {
+   width : 550px;
+}
+
+li {
+  border-radius: 3px;
+  padding: 25px 30px;
+  display: flex;
+  align-self: center;
+  align-content: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+.table-header {
+  background-color: #95A5A6;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.table-row {
+  background-color: #ffffff;
+  box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+}
+.col-1 {
+  flex-basis: 50%;
+}
+.col-2 {
+  flex-basis: 50%;
+}
