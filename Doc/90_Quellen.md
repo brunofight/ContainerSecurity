@@ -2,6 +2,7 @@
 
 - [Abbassi], [Building Container Images with Podman and Buildah](https://www.giantswarm.io/blog/building-container-images-with-podman-and-buildah), Puja Abbassi, 12.08.2019, GiantSwarm
 - [ATT&CK], [Containers Matrix](https://attack.mitre.org/matrices/enterprise/containers/), MITRE ATT&CK, 01.04.2022
+- [Bane], [Bane](https://github.com/genuinetools/bane), 17.09.2020
 - [BSI22], [IT-Grundschutzkompendium Edition 2022](https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Grundschutz/Kompendium/IT_Grundschutz_Kompendium_Edition2022.pdf?__blob=publicationFile&v=3)
 - [Buildah], [Buildah Image Builder](https://buildah.io/), Containers Organisation
 - [Cilium], [eBPF-based Networking, Observability, Security](cilium.io), Isovalent
@@ -14,6 +15,7 @@
 - [eBPF], [eBPF](https://ebpf.io/)
 - [Helm], [Helm - The package manager for Kubernetes](https://helm.sh/)
 - [HTCap], [Linux Capabilities](https://book.hacktricks.xyz/linux-hardening/privilege-escalation/linux-capabilities), Carlos Polop
+- [K8S_AA], [Restrict a Container's Access to Resources with AppArmor](https://kubernetes.io/docs/tutorials/security/apparmor/), 08.10.2022
 - [K8S_Arc], [Kubernetes Components](https://kubernetes.io/docs/concepts/overview/components/), 24.10.2022
 - [K8S_IMG], [Images](https://kubernetes.io/docs/concepts/containers/images/), 13.11.2022
 - [Knecht19], [Using Multi-Stage Builds to Simplify And Standardize Build Processes](https://medium.com/capital-one-tech/multi-stage-builds-and-dockerfile-b5866d9e2f84), Sven Hans Knecht, 14.03.2019
