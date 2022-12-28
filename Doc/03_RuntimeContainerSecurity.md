@@ -30,7 +30,70 @@ strace -c -f -S name <command line name> 2>&1 1>/dev/null | tail -n +3 | head -n
 
 ## 3.3 Linux Security Modules
 
+AppArmor ist ein Security-Modul für Linux, welches "Mandatory Access Control" (MAC) implementiert, um den Zugriff von Prozessen auf Systemressourcen zu beschränken. Es ermöglicht Administratoren, bestimmte Aktionen von Prozessen explizit zu erlauben oder zu verweigern. Insbesondere umfasst das Linux Capabilities und Datei-Lese-Schreib-Rechte. Da Container bekanntermaßen Prozesse sind, können diesen ebenfalls mit AppArmor-Profilen gehärtet werden. Folglich hat ein Angreifer, selbst wenn es gelingt einen Container zu übernehmen, große Schwierigkeiten die Container-Isolation zu überwinden (s. Kapitel 5 Angriffsszenarien).
 
+Die Syntax eines AppArmor-Profils ist etwas kompliziert. Hierbei kann das Tool ``bane`` helfen. [Rice20]
+
+Um ein AppArmor-Profil zu erstellen, welches lesenden/schreibenden Zugriff auf sämtliche Dateien unterbindet und nur die capabilities ``chown``, ``dac_override``, ``setuid``, ``setgid`` und ``net_bind_service`` erlaubt, erstellt man eine ``.toml``-Datei:
+
+```toml
+Name = "myapp"
+
+[FileSystem]
+AllowExec = [
+	"<nodejs install dir>"
+]
+
+[Capabilities]
+Allow = [
+	"chown",
+	"dac_override",
+	"setuid",
+	"setgid",
+	"net_bind_service"
+]
+```
+  
+,aus welcher ``bane`` wiederum ein AppArmor-Profil konstruiert, dieses automatisch unter ``/etc/apparmor.d/containers/`` ableget und ``apparmor_parser`` ausführt.
+
+```
+sudo bane myapp.toml
+```
+
+[Bane]
+
+Das somit installierte AppArmor-Profil, kann Docker-Containern zugewiesen werden, indem es mit ``--security-opt`` angegeben wird. 
+
+```bash
+docker run --security-opt apparmor=<profile-name> <image>
+```
+
+
+In Kubernetes verwendet man die Annotation ``container.apparmor.security.beta.kubernetes.io/<container-name>``. Beispielsweise könnte ein AppArmor-gehärteter Pod wie folgt erstellt werden:
+  
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-apparmor
+  annotations:
+    container.apparmor.security.beta.kubernetes.io/hello: localhost/myapp.toml
+spec:
+  containers:
+  - name: hello
+    image: busybox:1.28
+    command: [ "sh", "-c", "echo 'Hello AppArmor!' && sleep 1h" ]
+```
+
+[K8s_AA]
+  
+Zuvor muss allerdings sichergestellt werden, dass dieses AppArmor-Profil auch auf den Nodes verfügbar ist. Hierfür gibt es einige Ansätze:
+  
+
+
+ 
+  
+  
 
 ## 3.4 Extended Berkeley Packet Filter mit Cilium
 
