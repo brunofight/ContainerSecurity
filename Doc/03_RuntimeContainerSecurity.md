@@ -30,9 +30,11 @@ strace -c -f -S name <command line name> 2>&1 1>/dev/null | tail -n +3 | head -n
 
 ## 3.3 Linux Security Modules
 
-AppArmor ist ein Security-Modul für Linux, welches "Mandatory Access Control" (MAC) implementiert, um den Zugriff von Prozessen auf Systemressourcen zu beschränken. Es ermöglicht Administratoren, bestimmte Aktionen von Prozessen explizit zu erlauben oder zu verweigern. Insbesondere umfasst das Linux Capabilities und Datei-Lese-Schreib-Rechte. Da Container bekanntermaßen Prozesse sind, können diesen ebenfalls mit AppArmor-Profilen gehärtet werden. Folglich hat ein Angreifer, selbst wenn es gelingt einen Container zu übernehmen, große Schwierigkeiten die Container-Isolation zu überwinden (s. Kapitel 5 Angriffsszenarien).
+Sowohl AppArmor als auch SELinux sind Kernel-Module, die parallel zu dem per Default vorhandenen *Discretionary Access Control* (DAC), den Zugriff von Prozessen (und somit auch Containern) auf Systemressourcen (Capabilities, Dateizugriff,...) global beschränken. Dieses Konzept ist unter dem Namen *Mandatory Access Control* (MAC) bekannt. [Rice20]
 
-Die Syntax eines AppArmor-Profils ist etwas kompliziert. Hierbei kann das Tool ``bane`` helfen. [Rice20]
+### 3.3.1 AppArmor
+
+Die Funktionsweise von AppArmor basiert auf Konfigurations-Profilen, die Prozessen zugeordnet werden können. AppArmor-Profile haben eine etwas komplizierte Syntax. Hierbei kann das Tool ``bane`` helfen. [Rice20]
 
 Um ein AppArmor-Profil zu erstellen, welches lesenden/schreibenden Zugriff auf sämtliche Dateien unterbindet und nur die capabilities ``chown``, ``dac_override``, ``setuid``, ``setgid`` und ``net_bind_service`` erlaubt, erstellt man eine ``.toml``-Datei:
 
@@ -87,12 +89,13 @@ spec:
 
 [K8s_AA]
   
-Zuvor muss allerdings sichergestellt werden, dass dieses AppArmor-Profil auch auf den Nodes verfügbar ist. Hierfür gibt es einige Ansätze:
+Zuvor muss allerdings sichergestellt werden, dass dieses AppArmor-Profil auch auf den Nodes verfügbar ist. Hierfür gibt es einige Ansätze. Am sinnvollsten scheint es ein *DaemonSet* zu erstellen. *DaemonSets* garantieren, dass darin definierte Pods auf allen Nodes laufen. Somit können Pods innerhalb eines *DaemonSets* die Aufgabe übernehmen periodisch aus einer ConfigMap neue Profile zu beziehen.
   
+[K8s_AA]
 
+### 3.3.2 SELinux
 
- 
-  
+*Security Enhanced Linux* (SELinux) gewährt basierend auf zusätzlichen Datei-Labels Zugriff...
   
 
 ## 3.4 Extended Berkeley Packet Filter mit Cilium
