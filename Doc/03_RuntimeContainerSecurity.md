@@ -36,7 +36,7 @@ Sowohl AppArmor als auch SELinux sind Kernel-Module, die parallel zu dem per Def
 
 Die Funktionsweise von AppArmor basiert auf Konfigurations-Profilen, die Prozessen zugeordnet werden können. AppArmor-Profile haben eine etwas komplizierte Syntax. Hierbei kann das Tool ``bane`` helfen. [Rice20]
 
-Um ein AppArmor-Profil zu erstellen, welches lesenden/schreibenden Zugriff auf sämtliche Dateien unterbindet und nur die capabilities ``chown``, ``dac_override``, ``setuid``, ``setgid`` und ``net_bind_service`` erlaubt, erstellt man eine ``.toml``-Datei:
+Um beispielsweise ein AppArmor-Profil zu erstellen, welches lesenden/schreibenden Zugriff auf sämtliche Dateien unterbindet und nur die capabilities ``chown``, ``dac_override``, ``setuid``, ``setgid`` und ``net_bind_service`` erlaubt, erstellt man eine ``.toml``-Datei:
 
 ```toml
 Name = "myapp"
