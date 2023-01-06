@@ -12,7 +12,7 @@ Bevor ergänzende Sicherheitsmaßnahmen in Betracht gezogen werden, sollten Cont
 
 Problematisch ist hierbei, dass die Standardwerte von gängigen *Container Runtimes* wie Docker nicht mit diesem Prinzip konform sind. Das fällt insbesondere bei dem *run-as-root default* auf. Ohne genauere Spezifikation eines Nutzers mit der ``--user``-Flag bzw. Angabe eines Nutzers mit ``USER`` im *Dockerfile* läuft der containerisierte Prozess unter dem System-Root-Nutzer. Sofern es einem Angreifer also gelingt aus dem Container auszubrechen (möglicherweise eine Konsequenz weiterer Fehlkonfigurationen in diesem Kapitel) besitzt dieser bereits die höchsten Systemrechte. Dabei ist herauszustreichen, dass Container im Allgemeinen nicht prozessübergreifende Aufgaben auf dem Host wahrnehmen müssen (eine Ausnahme bilden *Sidecar-Container*).
 
-In einem Kubernetes-Cluster empfiehlt es sich Pods und Deployments mit dem ``securityContext``-Feld zu versehen. Für dieses Feld findet man in der API-Referenz zahlreiche untergeordnete Attribute, darunter auch die Spezifikation eines *seccomp*-Profils und *SELinux*-Kontext (s. 3.2 und 3.3). Im Sinne der laufenden Argumentation ist vor allem auf die Felder:
+In einem Kubernetes-Cluster empfiehlt es sich Pods und Deployments mit dem ``securityContext``-Feld zu versehen. Für dieses Feld findet man in der API-Referenz zahlreiche untergeordnete Attribute, darunter auch die Spezifikation von *capability*-Restriktionen, eines *seccomp*-Profils, und eines *SELinux*-Kontext (s. 3.2 und 3.3). Im Sinne der laufenden Argumentation ist vor allem auf die Felder:
 
 - ``allowPrivilegeEscalation``
 - ``runAsGroup``
@@ -21,6 +21,8 @@ In einem Kubernetes-Cluster empfiehlt es sich Pods und Deployments mit dem ``sec
 
 hinzuweisen. Kubernetes legt somit global für die jeweilige *Container Runtime* fest, unter welchem Nutzer Container des spezifizierten *Pods* gestartet werden. Zwecks Auditierung wäre immer zu hinterfragen, warum die Felder-Wert-Paare ``allowPrivilegeEscalation: true`` oder ``runAsNonRoot: false`` gesetzt sein sollten.
 [K8S_SC]
+
+
 
 
 
@@ -44,9 +46,11 @@ sudo docker run --security-opt seccomp=/home/cyberuser/profiles/violation.json -
 strace -c -f -S name <command line name> 2>&1 1>/dev/null | tail -n +3 | head -n -2 | awk '{print $(NF)}'
 ```
 
-## 3.3 Linux Security Modules
+## 3.3 Linux Security Modules (LSM)
 
 Sowohl AppArmor als auch SELinux sind Kernel-Module, die parallel zu dem per Default vorhandenen *Discretionary Access Control* (DAC), den Zugriff von Prozessen (und somit auch Containern) auf Systemressourcen (Capabilities, Dateizugriff,...) global beschränken. Dieses Konzept ist unter dem Namen *Mandatory Access Control* (MAC) bekannt. [Rice20]
+
+In Kapitel 3.1 wurde darauf hingewiesen, dass es innerhalb des Kubernetes ``securityContext`` auch möglich wäre *Capability*-Einschränkungen zu treffen. Wenn man sich dafür entscheidet ein LSM zur Härtung von Containern zu verwenden, dann sollte man auch die Capability-Beschränkung von diesem übernehmen lassen, sodass es zu keiner redundanten Konfiguration und unerwünschten Konflikten kommt.
 
 ### 3.3.1 AppArmor
 
