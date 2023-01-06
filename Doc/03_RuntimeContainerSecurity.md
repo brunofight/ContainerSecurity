@@ -8,6 +8,22 @@ Es kann dennoch lohnenswert sein einige herkömmliche und etablierte Ansätze zu
 
 ## 3.1 Grundlegende Konfiguration
 
+Bevor ergänzende Sicherheitsmaßnahmen in Betracht gezogen werden, sollten Container genau so konfiguriert sein, dass sie nur die notwendigen Rechte für ihre Aufgabe besitzen. Dieser Ansatz leitet sich vom *Principle of least privilege* ab. 
+
+Problematisch ist hierbei, dass die Standardwerte von gängigen *Container Runtimes* wie Docker nicht mit diesem Prinzip konform sind. Das fällt insbesondere bei dem *run-as-root default* auf. Ohne genauere Spezifikation eines Nutzers mit der ``--user``-Flag bzw. Angabe eines Nutzers mit ``USER`` im *Dockerfile* läuft der containerisierte Prozess unter dem System-Root-Nutzer. Sofern es einem Angreifer also gelingt aus dem Container auszubrechen (möglicherweise eine Konsequenz weiterer Fehlkonfigurationen in diesem Kapitel) besitzt dieser bereits die höchsten Systemrechte. Dabei ist herauszustreichen, dass Container im Allgemeinen nicht prozessübergreifende Aufgaben auf dem Host wahrnehmen müssen (eine Ausnahme bilden *Sidecar-Container*).
+
+In einem Kubernetes-Cluster empfiehlt es sich Pods und Deployments mit dem ``securityContext``-Feld zu versehen. Für dieses Feld findet man in der API-Referenz zahlreiche untergeordnete Attribute, darunter auch die Spezifikation eines *seccomp*-Profils und *SELinux*-Kontext (s. 3.2 und 3.3). Im Sinne der laufenden Argumentation ist vor allem auf die Felder:
+
+- ``allowPrivilegeEscalation``
+- ``runAsGroup``
+- ``runAsNonRoot``
+- ``runAsUser``
+
+hinzuweisen. Kubernetes legt somit global für die jeweilige *Container Runtime* fest, unter welchem Nutzer Container des spezifizierten *Pods* gestartet werden. Zwecks Auditierung wäre immer zu hinterfragen, warum die Felder-Wert-Paare ``allowPrivilegeEscalation: true`` oder ``runAsNonRoot: false`` gesetzt sein sollten.
+[K8S_SC]
+
+
+
 
 ## 3.2 Secure Computing Mode (seccomp)
 
