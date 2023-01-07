@@ -22,8 +22,55 @@ In einem Kubernetes-Cluster empfiehlt es sich Pods und Deployments mit dem ``sec
 hinzuweisen. Kubernetes legt somit global für die jeweilige *Container Runtime* fest, unter welchem Nutzer Container des spezifizierten *Pods* gestartet werden. Zwecks Auditierung wäre immer zu hinterfragen, warum die Felder-Wert-Paare ``allowPrivilegeEscalation: true`` oder ``runAsNonRoot: false`` gesetzt sein sollten.
 [K8S_SC]
 
+### 3.1.1 Clusterinterne Netzwerke
 
+Wie in Kapitel 2.4 angesprochen sollten für die Erreichbarkeit eines Pods innerhalb eines Clusters, *Services* verwendet werden. Darüber wird sichergestellt, dass die Netzwerkschnittstelle (mit *kube-dns*) konsistent bleibt und somit andere Dienste auf diese zuverlässig zugreifen können. Zudem fungieren *Services* auch als *LoadBalancer* für das zugrundeliegende *ReplicaSet*, welches über den *Service* angesprochen wird (oder genau genommen alle Pods, die mit dem definierten Selektor ``app.kubernetes.io/name`` übereinstimmen).
 
+Zusammen mit dem Kubernetes-*NetworkPolicy* Objekt ist es möglich innerhalb des Clusters eine weitreichende Netzwerk-Segregation umzusetzen. Ein abgewandeltes Beispiel der Kubernetes-Dokumentation:
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: test-network-policy
+  namespace: myproject
+spec:
+  podSelector:
+    matchLabels:
+      role: db
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:        
+        - namespaceSelector:
+            matchLabels:
+              project: myproject
+        - podSelector:
+            matchLabels:
+              role: frontend
+      ports:
+        - protocol: TCP
+          port: 6379     
+```
+
+zeigt wie Pods mit der Rolle ``db`` im Namespace *myproject* nur eingehenden Verkehr von Pods im gleichen Namespace mit der Rolle ``frontend`` erlauben. Es ist auch möglich mit:
+
+```yaml
+ingress:
+    - from:
+        - ipBlock:
+            cidr: 172.17.0.0/16
+```
+
+den Zugriff von cluster-externen IP-Adressen auf bestimmte Pods (und Deployments) einzuschränken. Hier würden ausschließlich IP-Adressen im Class-B-Netz ``172.17.0.0/16`` für *ingress traffic* zugelassen werden.
+
+### 3.1.2 Externer Netzwerkzugriff auf ein Cluster
+
+Per Default sind Pods in einem Kubernetes-Cluster nicht extern erreichbar. Hierzu bedarf es einer der folgenden Komponenten:
+
+- NodePort
+- LoadBalancer
+- Ingress mit IngressController
 
 
 
