@@ -1,5 +1,18 @@
 # 7. Referenz hilfreicher Werkzeuge
 
+Für die Erstellung, Überprüfung von Container Images, die Interaktion mit einer Registry, die Generierung von seccomp und AppArmor-Profilen und weiteren containerspezifische Aufgaben wurden viele OpenSource-Werkzeuge entwickelt. Innerhalb dieses Kapitels findet man eine Referenz zu u.a.:
+
+- Tools des [Open Repository for Container Tools](https://github.com/containers) wie:
+  - [buildah](https://github.com/containers/buildah) für rootless Container-Builds
+  - [skopeo](https://github.com/containers/skopeo) - Interaktion mit Container Images und Registries
+- [dive](https://github.com/wagoodman/dive) - Docker Image Layer Analyzer
+- [bane](https://github.com/genuinetools/bane) - Erstellung von AppArmor Profilen
+- Linux-Befehlen wie ``getcaps``, ``strace``
+- Image-Scannern wie [trivy](https://github.com/aquasecurity/trivy), [grype](https://github.com/anchore/grype) oder in Teilen auch [kics.io](https://kics.io/)
+- AdmissionController wie [Connaiseur](https://github.com/sse-secure-systems/connaisseur) oder [Open Policy Agent](https://www.openpolicyagent.org/)
+
+, die als Nachschlagewerk für den Bedarfsfall gesehen werden kann. Das heißt im Mittelpunkt dieses Kapitels steht der zu erreichende Zweck und welche Tools dafür mit welchen Basisbefehlen (oder auch relevanten komplexeren Befehlen) sich als nützlich erweisen könnten.
+
 ## 7.1 Linux-Befehle
 
 ### 7.1.1 Capabilities
@@ -48,6 +61,3 @@ minikube start --driver=virtualbox
 minikube config set driver virtualbox
 ```
 
-
-
-Buildah, Connaiseur, Dive, Grype, Skopeo, eBPF
