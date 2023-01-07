@@ -18,7 +18,9 @@
 - [K8S_AA], [Restrict a Container's Access to Resources with AppArmor](https://kubernetes.io/docs/tutorials/security/apparmor/), 08.10.2022
 - [K8S_Arc], [Kubernetes Components](https://kubernetes.io/docs/concepts/overview/components/), 24.10.2022
 - [K8S_IMG], [Images](https://kubernetes.io/docs/concepts/containers/images/), 13.11.2022
+- [K8S_NET], [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/), 22.12.2022
 - [K8S_SC], [Configure a Security Context for a Pod or Container](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/), 05.12.2022
+- [K8S_SVC], [Service](https://kubernetes.io/docs/concepts/services-networking/service/), 23.12.2022
 - [Knecht19], [Using Multi-Stage Builds to Simplify And Standardize Build Processes](https://medium.com/capital-one-tech/multi-stage-builds-and-dockerfile-b5866d9e2f84), Sven Hans Knecht, 14.03.2019
 - [Grype], [Grype Image Scanner](https://github.com/anchore/grype), Alex Goodman, Github
 - [Isov21], [Detecting a Container Escape with Cilium and eBPF](https://isovalent.com/blog/post/2021-11-container-escape/), Isovalent Blog, 16.11.2021
