@@ -74,7 +74,7 @@ Per Default sind Pods in einem Kubernetes-Cluster nicht extern erreichbar. Hierz
 
 ### 3.1.3 Mounts
 
-
+https://book.hacktricks.xyz/linux-hardening/privilege-escalation/docker-breakout/docker-breakout-privilege-escalation
 
 ## 3.2 Secure Computing Mode (seccomp)
 
