@@ -62,15 +62,17 @@ ingress:
             cidr: 172.17.0.0/16
 ```
 
-den Zugriff von cluster-externen IP-Adressen auf bestimmte Pods (und Deployments) einzuschränken. Hier würden ausschließlich IP-Adressen im Class-B-Netz ``172.17.0.0/16`` für *ingress traffic* zugelassen werden.
+den Zugriff von cluster-externen IP-Adressen auf bestimmte Pods (und Deployments) einzuschränken. Hier würden ausschließlich IP-Adressen im Class-B-Netz ``172.17.0.0/16`` für *ingress traffic* zugelassen werden. [K8S_NET], [K8S_SVC]
 
 ### 3.1.2 Externer Netzwerkzugriff auf ein Cluster
 
 Per Default sind Pods in einem Kubernetes-Cluster nicht extern erreichbar. Hierzu bedarf es einer der folgenden Komponenten:
 
-- NodePort
-- LoadBalancer
-- Ingress mit IngressController
+- **NodePort**: Öffnung eines Ports auf einem Node (per default nur 30000-32767) und Zuordnung dessen zu einem *Service*. Für eine Produktivumgebung ist diese Einstellung nicht sinnvoll, da sämtlicher Traffic zwischen Cluster und externen Hosts dezentralisiert und dementsprechend schwieriger zu kontrollieren wird.
+- **LoadBalancer**: Routinglösung bei externen Netzwerkverkehr, welcher nicht über HTTP/HTTPS laufen kann. Sofern das Cluster On Premise betrieben wird ist das Aufsetzen des zugehörigen technischen LoadBalancers mit erheblichen Aufwand verbunden.
+- **Ingress mit IngressController**: für HTTP/HTTPS-Kommunikation präferierte Lösung. Da MicroServices letztlich über REST-Schnittstellen realisiert werden, stellt die Protokollbeschränkung keine große Hürde da. *Ingress* bedarf (mindestens) eines *IngressControllers*; eine Liste möglicher Kandidaten hierfür findet man in der [Kubernetes-Dokumentation](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/). Über *Ingress* werden *Services* innerhalb des Clusters zentral über Web-Pfade angesprochen.
+
+### 3.1.3 Mounts
 
 
 
