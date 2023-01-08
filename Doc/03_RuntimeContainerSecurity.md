@@ -22,6 +22,34 @@ In einem Kubernetes-Cluster empfiehlt es sich Pods und Deployments mit dem ``sec
 hinzuweisen. Kubernetes legt somit global für die jeweilige *Container Runtime* fest, unter welchem Nutzer Container des spezifizierten *Pods* gestartet werden. Zwecks Auditierung wäre immer zu hinterfragen, warum die Felder-Wert-Paare ``allowPrivilegeEscalation: true`` oder ``runAsNonRoot: false`` gesetzt sein sollten.
 [K8S_SC]
 
+Kubernetes bietet mit *Pod Security Standards* eine leicht zu implementierende globale Policy für diese Werte. Die *Restricted*-Policy verlangt das Setzen der zuvor genannten Attribute im gesamten Cluster (nachträgliche Definition von Ausnahmen möglich).:
+
+```yaml
+apiVersion: apiserver.config.k8s.io/v1
+kind: AdmissionConfiguration
+plugins:
+- name: PodSecurity
+  configuration:
+    apiVersion: pod-security.admission.config.k8s.io/v1
+    kind: PodSecurityConfiguration
+    defaults:
+      enforce: "baseline"
+      enforce-version: "latest"
+      audit: "restricted"
+      audit-version: "latest"
+      warn: "restricted"
+      warn-version: "latest"
+    exemptions:
+      usernames: []
+      runtimeClasses: []
+      namespaces: [kube-system]
+# s. https://kubernetes.io/docs/tutorials/security/cluster-level-pss/
+```
+
+In diesem Beispiel müssen mindestens *Baseline*-Standards eingehalten werden. Verstöße gegen *Restricted*-Standards werden protokolliert (``audit``).
+
+[K8S_PSS], [K8S_PSA]
+
 ### 3.1.1 Clusterinterne Netzwerke
 
 Wie in Kapitel 2.4 angesprochen sollten für die Erreichbarkeit eines Pods innerhalb eines Clusters, *Services* verwendet werden. Darüber wird sichergestellt, dass die Netzwerkschnittstelle (mit *kube-dns*) konsistent bleibt und somit andere Dienste auf diese zuverlässig zugreifen können. Zudem fungieren *Services* auch als *LoadBalancer* für das zugrundeliegende *ReplicaSet*, welches über den *Service* angesprochen wird (oder genau genommen alle Pods, die mit dem definierten Selektor ``app.kubernetes.io/name`` übereinstimmen).
@@ -79,7 +107,6 @@ In dem Wissen, dass Container des gleichen Images in ihrem Verhalten identisch s
 Auch hier gilt das *Principle of least privilege*. Das beginnt bei der genauen Definition von Dateirechten (read, write, execute) und Beschränkung auf die geringstnotwendige Dateimenge. Wie in [book.hacktricks.xyz](https://book.hacktricks.xyz/linux-hardening/privilege-escalation/docker-breakout/docker-breakout-privilege-escalation#privilege-escalation-with-2-shells-and-host-mount) beschrieben können willkürlich bzw. leichtfertig definierte Mounts für lokale *Privilege Escalation* oder Umgehung der Container Isolation ausgenutzt werden.
 
 Für die feingranulare Festlegung von Dateirechten sollte eines der Linux Security Modules (AppArmor oder SELinux - s. 3.3) in Betracht gezogen werden.
-
 
 ## 3.2 Secure Computing Mode (seccomp)
 
