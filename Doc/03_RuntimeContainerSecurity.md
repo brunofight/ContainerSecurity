@@ -74,7 +74,12 @@ Per Default sind Pods in einem Kubernetes-Cluster nicht extern erreichbar. Hierz
 
 ### 3.1.3 Mounts
 
-https://book.hacktricks.xyz/linux-hardening/privilege-escalation/docker-breakout/docker-breakout-privilege-escalation
+In dem Wissen, dass Container des gleichen Images in ihrem Verhalten identisch sein sollten  (*immutable Containers*) stellt sich die Frage der Persistenz von container-geschaffenen Daten über die Laufzeit eines Containers hinweg. Bei containerisierten Datenbanksystemen schließen sich Konsistenzanforderungen an. Daraus ergibt sich die Notwendigkeit einheitlicher lokaler oder externer Speichersysteme, die Containern zur Verfügung gestellt werden.
+
+Auch hier gilt das *Principle of least privilege*. Das beginnt bei der genauen Definition von Dateirechten (read, write, execute) und Beschränkung auf die geringstnotwendige Dateimenge. Wie in [book.hacktricks.xyz](https://book.hacktricks.xyz/linux-hardening/privilege-escalation/docker-breakout/docker-breakout-privilege-escalation#privilege-escalation-with-2-shells-and-host-mount) beschrieben können willkürlich bzw. leichtfertig definierte Mounts für lokale *Privilege Escalation* oder Umgehung der Container Isolation ausgenutzt werden.
+
+Für die feingranulare Festlegung von Dateirechten sollte eines der Linux Security Modules (AppArmor oder SELinux - s. 3.3) in Betracht gezogen werden.
+
 
 ## 3.2 Secure Computing Mode (seccomp)
 
