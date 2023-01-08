@@ -110,22 +110,21 @@ Für die feingranulare Festlegung von Dateirechten sollte eines der Linux Securi
 
 ## 3.2 Secure Computing Mode (seccomp)
 
-Der Linux-Kernel stellt mit Secure Computing Mode (seccomp) ein Feature zur Beschränkung der von einem Prozess ausführbaren syscalls bereit. 
+Der Linux-Kernel stellt mit Secure Computing Mode (seccomp) ein Feature zur Beschränkung der von einem Prozess ausführbaren *System Calls* (syscalls) bereit.
 
-- default docker seccomp Profile --> 44 syscalls blockiert
-- 2022 ca. 400 syscalls
-- laut aquasec benötigt Container zw. 40 und 70 syscalls --> default Profile unzureichend
-- docker seccomp json dokument
-  - SCMP_ACT_KILL, SCMP_ACT_TRAP, SCMP_ACT_ERRNO, trace, allow, log
-- strace verwenden um syscalls eines containers zu profilen ``strace -qc time``, ``strace -c -f -S name time 2>1&1 1>/dev/null | tail -n +3 | head -n -2 | awk '{print $(NF)}'``
+*System Calls* sind die Schnittstelle für Prozesse in *User Space*, um auf privilegierte Funktionen in *Kernel Space* zuzugreifen. Die Anzahl der verfügbaren *syscalls* hängt von der Prozessorarchitektur ab. So gibt es Stand November 2022 für ARM-Prozessoren insgesamt 450 verschiedene *syscalls*. [Jusc22], [Rice20]
 
+Daraus ergibt sich die Implikation, dass (containerisierte) Prozesse im Allgemeinen nicht alle *syscalls* für die Erfüllung ihrer vorgesehenen (!) Aufgabe benötigen. Man kann sogar so weit gehen, dass bestimmte Funktionen unter gar keinen Umständen von Containern übernommen werden sollten. So schließt das [Docker Default Seccomp Profil](https://docs.docker.com/engine/security/seccomp/#significant-syscalls-blocked-by-the-default-profile) *syscalls* wie ``create_module``, ``delete_module``, ``mount`` oder ``reboot`` aus. Es ist dabei ebenfalls anzumerken, dass Teilmengen von *syscalls* durch *capabilities* beschränkt werden (eine Aufgabe für Linux Security Modules - s. Kapitel 3.3).
+
+Seccomp ist nicht nur dazu in der Lage Systemaufrufe zu blockieren, sondern kann auch Teilmengen auf Per-syscall-Basis auditieren (``SCMP_ACT_LOG``).
+
+Die Idealvorstellung wäre es für jedes Container Image ein Seccomp-Profil zu erstellen, welches ausschließlich die für diesen Dienst benötigten *syscalls* zulässt. Mithilfe von ``strace`` lassen sich die von einer Anwendung genutzten *syscalls* extrahieren:
 
 ```bash
-# cyberbit training
-sudo docker run --security-opt seccomp=/home/cyberuser/profiles/violation.json --name cyberbit -dit busybox:latest
-
 strace -c -f -S name <command line name> 2>&1 1>/dev/null | tail -n +3 | head -n -2 | awk '{print $(NF)}'
 ```
+
+Dieses Vorgehen kann für vergleichsweise einfache Applikationen nützlich sein. Allerdings solle man beachten, dass ähnlich zu dem Wunsch einer vollständigen Testabdeckung, komplexe Anwendungen nicht mit Gewissheit auf eine konkrete Menge von *syscalls* festlegbar sind. Ein zu restriktives Seccomp-Profil könnte folglich negative Auswirkungen auf die Funktionalität der (containerisierten) Applikation haben. [Rice20]
 
 ## 3.3 Linux Security Modules (LSM)
 
