@@ -100,7 +100,6 @@ Per Default sind Pods in einem Kubernetes-Cluster nicht extern erreichbar. Hierz
 - **LoadBalancer**: Routinglösung bei externen Netzwerkverkehr, welcher nicht über HTTP/HTTPS laufen kann. Sofern das Cluster On Premise betrieben wird ist das Aufsetzen des zugehörigen technischen LoadBalancers mit erheblichen Aufwand verbunden.
 - **Ingress mit IngressController**: für HTTP/HTTPS-Kommunikation präferierte Lösung. Da MicroServices letztlich über REST-Schnittstellen realisiert werden, stellt die Protokollbeschränkung keine große Hürde da. *Ingress* bedarf (mindestens) eines *IngressControllers*; eine Liste möglicher Kandidaten hierfür findet man in der [Kubernetes-Dokumentation](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/). Über *Ingress* werden *Services* innerhalb des Clusters zentral über Web-Pfade angesprochen.
 
-
 ![Abbildung: Ingress in Kubernetes](Doc/Images/Ingress.png)
 
 ### 3.1.3 Mounts
