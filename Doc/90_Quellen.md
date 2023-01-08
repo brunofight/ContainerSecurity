@@ -19,6 +19,8 @@
 - [K8S_Arc], [Kubernetes Components](https://kubernetes.io/docs/concepts/overview/components/), 24.10.2022
 - [K8S_IMG], [Images](https://kubernetes.io/docs/concepts/containers/images/), 13.11.2022
 - [K8S_NET], [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/), 22.12.2022
+- [K8S_PSA], [Pod Security Admission](https://kubernetes.io/docs/concepts/security/pod-security-admission/), 05.08.2022
+- [K8S_PSS], [https://kubernetes.io/docs/tutorials/security/cluster-level-pss/](https://kubernetes.io/docs/tutorials/security/cluster-level-pss/), 25.10.2022
 - [K8S_SC], [Configure a Security Context for a Pod or Container](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/), 05.12.2022
 - [K8S_SVC], [Service](https://kubernetes.io/docs/concepts/services-networking/service/), 23.12.2022
 - [Knecht19], [Using Multi-Stage Builds to Simplify And Standardize Build Processes](https://medium.com/capital-one-tech/multi-stage-builds-and-dockerfile-b5866d9e2f84), Sven Hans Knecht, 14.03.2019
