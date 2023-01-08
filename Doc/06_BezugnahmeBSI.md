@@ -69,6 +69,7 @@ In einer Entwicklungsumgebung könnte man zum Debugging einen Fernzugriff erlaub
 
 ### SYS.1.6.A17 Ausführung von Containern ohne Privilegien
 
+Per Default wird der *Pod Security Standard* ``Restricted`` in einem Kubernetes Cluster eingesetzt (s. Kapitel 3.1). Ausnahmen 
 
 ### SYS.1.6.A18 Accounts der Anwendungsdienste
 
@@ -81,6 +82,11 @@ In einer Entwicklungsumgebung könnte man zum Debugging einen Fernzugriff erlaub
 
 ### SYS.1.6.A21 Erweiterte Sicherheitsrichtlinien
 
+Für Mandatory Access Control stehen AppArmor oder SELinux zur Verfügung (s. Kapitel 3.3). Gemeinsam mit Policy-Definitionen aus SYS.1.6.A17 kann die Verwendung eines Profils erzwungen werden. Der Einsatz eines Security Admission Controllers für feingranularere Policies sollte in Erwägung gezogen werden:
+
+- [KubeWarden](https://docs.kubewarden.io/)
+- [Kyverno](https://kyverno.io/policies/pod-security/)
+- [OPA Gatekeeper](https://open-policy-agent.github.io/gatekeeper/website/docs/howto/)
 
 ### SYS.1.6.A22 Vorsorge für Untersuchungen
 
@@ -90,6 +96,15 @@ Diese Anforderung wird mit der Bedingung **Immutable Containers** erfüllt.
 
 ### SYS.1.6.A24 Hostbasierte Angriffserkennung
 
+Seccomp und Linux Security Module können in einem Auditiermodus gestartet werden. Dabei übernimmt Seccomp die Aufgabe Kernel-Anfragen (syscalls) und AppArmor/SELinux:
+
+- Netzverbindungen
+- erstellte Prozesse
+- Dateisystem-Zugriffe
+
+zu protokollieren. Meldungen werden anhand von SIEM-Regeln zu Angriffsmustern korreliert.
+
+Ein vollumfängliches Cluster-Observability-Tool wie [AquaSec Kubernetes Security](https://www.aquasec.com/products/kubernetes-security/) könnte ebenfalls in Betracht gezogen werden.
 
 ### SYS.1.6.A25 Hochverfügbarkeit von containerisierten Anwendungen
 
