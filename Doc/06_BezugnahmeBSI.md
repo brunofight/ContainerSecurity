@@ -4,7 +4,7 @@ Der 2022 im IT-Grundschutz-Kompendium neu eingeführte Baustein SYS.1.6 - Contai
 
 Dieses Kapitel ist als Referenz, ähnlich zu den Umsetzungshinweisen für andere BSI-Bausteine, zu sehen. Dabei wird vor allem bei den technischen Maßnahmen auf die bereits dargebotenen Hilfsmitteln und Prinzipien hingewiesen, sodass bedarfsweise schnell an entsprechender Stelle nachgelesen werden kann.
 
-**Notiz zur weiteren Bearbeitung des Dokuments**: oftmals sind Anforderungen sind Anforderungen aus mehrerern Teilanforderungen zusammengesetzt (jeder Satz mit SOLLTE oder MUSS). Deswegen sollten die Anforderungen nicht basierend auf dessen Titel sondern dessen Beschreibung in [SYS.1.6](https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Grundschutz/IT-GS-Kompendium_Einzel_PDFs_2022/07_SYS_IT_Systeme/SYS_1_6_Containerisierung_Edition_2022.pdf?__blob=publicationFile&v=3) untersucht werden.
+**Notiz zur weiteren Bearbeitung des Dokuments**: oftmals sind Anforderungen aus mehrerern Teilanforderungen zusammengesetzt (jeder Satz mit SOLLTE oder MUSS). Deswegen sollten die Anforderungen nicht basierend auf dessen Titel sondern dessen Beschreibung in [SYS.1.6](https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Grundschutz/IT-GS-Kompendium_Einzel_PDFs_2022/07_SYS_IT_Systeme/SYS_1_6_Containerisierung_Edition_2022.pdf?__blob=publicationFile&v=3) untersucht werden.
 
 
 ## 6.1 Basisanforderungen
