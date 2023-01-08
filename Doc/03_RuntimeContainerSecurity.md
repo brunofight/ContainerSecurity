@@ -126,6 +126,10 @@ strace -c -f -S name <command line name> 2>&1 1>/dev/null | tail -n +3 | head -n
 
 Dieses Vorgehen kann für vergleichsweise einfache Applikationen nützlich sein. Allerdings solle man beachten, dass ähnlich zu dem Wunsch einer vollständigen Testabdeckung, komplexe Anwendungen nicht mit Gewissheit auf eine konkrete Menge von *syscalls* festlegbar sind. Ein zu restriktives Seccomp-Profil könnte folglich negative Auswirkungen auf die Funktionalität der (containerisierten) Applikation haben. [Rice20]
 
+Insgesamt ist das jedoch keine Argumentation gegen *seccomp*. Ein gut durchdachtes Standard-Seccomp-Profil reduziert die Möglichkeiten eines Angreifers aus einem kompromitierten Container heraus zu agieren, maßgeblich. Des Weiteren können verdächtige *syscalls* weiterhin geloggt und an ein Sicherheitsmonitoring-System weitergegeben werden.
+
+In Kubernetes forciert der *Pod Security Standard* - *restricted* die Verwendung von wenigstens dem ``RuntimeDefault``-Profil (also dem Profil, welches von der gekapselten Container Runtime bereitgestellt wird) oder einem auf dem Host verfügbaren Profil (d.h. ``Unconfined`` ist nicht erlaubt). [K8S_PSS]
+
 ## 3.3 Linux Security Modules (LSM)
 
 Sowohl AppArmor als auch SELinux sind Kernel-Module, die parallel zu dem per Default vorhandenen *Discretionary Access Control* (DAC), den Zugriff von Prozessen (und somit auch Containern) auf Systemressourcen (Capabilities, Dateizugriff,...) global beschränken. Dieses Konzept ist unter dem Namen *Mandatory Access Control* (MAC) bekannt. [Rice20]
