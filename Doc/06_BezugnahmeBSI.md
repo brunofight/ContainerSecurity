@@ -1,11 +1,13 @@
 # 6. Der Baustein Containerisierung
 
-- spezifisch für Betreiber Kritischer Infrastrukturen
-- was gilt es noch zur Erfüllung zu beachten?
-  - was noch nicht in den vorherigen Kapiteln behandelt wurde
-  - organisatorische Maßnahmen
+Der 2022 im IT-Grundschutz-Kompendium neu eingeführte Baustein SYS.1.6 - Containerisierung stellt spezifisch für Betreiber Kritischer Infrastrukturen eine Reihe von Anforderungen, die größtenteils mit Beachtung der operativen Sicherheitshinweise der vorhergehenden Kapitel erfüllt werden können. Dabei ist zu beachten, dass bisher kaum auf organisatorische Maßnahmen eingegangen wurde. 
 
-## 6.1 Anforderungen
+Dieses Kapitel ist als Referenz, ähnlich zu den Umsetzungshinweisen für andere BSI-Bausteine, zu sehen. Dabei wird vor allem bei den technischen Maßnahmen auf die bereits dargebotenen Hilfsmitteln und Prinzipien hingewiesen, sodass bedarfsweise schnell an entsprechender Stelle nachgelesen werden kann.
+
+**Notiz zur weiteren Bearbeitung des Dokuments**: oftmals sind Anforderungen sind Anforderungen aus mehrerern Teilanforderungen zusammengesetzt (jeder Satz mit SOLLTE oder MUSS). Deswegen sollten die Anforderungen nicht basierend auf dessen Titel sondern dessen Beschreibung in [SYS.1.6](https://www.bsi.bund.de/SharedDocs/Downloads/DE/BSI/Grundschutz/IT-GS-Kompendium_Einzel_PDFs_2022/07_SYS_IT_Systeme/SYS_1_6_Containerisierung_Edition_2022.pdf?__blob=publicationFile&v=3) untersucht werden.
+
+
+## 6.1 Basisanforderungen
 
 ### SYS.1.6.A1 Planung des Container-Einsatzes
 
@@ -25,6 +27,7 @@ Diese Anforderung ist eng gekoppelt mit SYS.1.6.A12 und SYS.1.6.A14 und wird mit
 
 ### SYS.1.6.A8 Sichere Speicherung von Zugangsdaten bei Containern
 
+## 6.2 Standardanforderungen
 
 ### SYS.1.6.A9 Eignung für Container-Betrieb
 
@@ -79,6 +82,7 @@ Per Default wird der *Pod Security Standard* ``Restricted`` in einem Kubernetes 
 
 ### SYS.1.6.A20 Absicherung von Konfigurationsdaten
 
+## 6.3 Anforderungen bei erhöhtem Schutzbedarf
 
 ### SYS.1.6.A21 Erweiterte Sicherheitsrichtlinien
 
