@@ -1,10 +1,8 @@
 # 3. Containersicherheit zur Laufzeit
 
-In diesem Kapitel werden einige wichtige Mechanismen zur Gewährleistung der Containerisolation und Unveränderlichkeit von Containern zur Laufzeit betrachtet. Letzeres ist auch unter dem Begriff *Drift Prevention* bekannt. Die Analyse erfolgt anhand eines lokalen Minikube-Clusters (s. Kapitel 7.2 zur Referenz).
+In diesem Kapitel werden einige wichtige Mechanismen zur Gewährleistung der Containerisolation und Unveränderlichkeit von Containern zur Laufzeit betrachtet. Letzeres ist auch unter dem Begriff *Drift Prevention* bekannt. 
 
-Seit einigen Jahren ist es möglich mit dem extended Berkeley Packet Filter (eBPF) beliebige Events im Kernel auszuwerten und Funktionalität basierend auf diesen hinzuzufügen. Während es komplex ist eigenhändig eBPF-Programme für den Kernel zu schreiben, gibt es bereits eine Vielzahl von Programmen, welche Detailwissen über den Kernel selbst über eine abstrahierte Schnittstelle verbergen. Das Open-Source-Projekt *Cilium* bietet ein breites Anwendungsspektrum für eBPF (s. Kapitel 3.3).
-
-Es kann dennoch lohnenswert sein einige herkömmliche und etablierte Ansätze zur Berechtigungsrestriktion, wie *seccomp*, *AppArmor* und *SELinux* anzusehen, da mit diesen auch schon eine beachtenswerter Sicherheitsgewinn einhergeht (Kapitel 3.2 und 3.3). 
+Neben grundlegenden Konfigurationsmaßnahmen für Container und Container-Orchestrierung (s. Kapitel 3.1) werden einige herkömmliche und etablierte Ansätze zur Berechtigungsrestriktion, wie *seccomp*, *AppArmor* und *SELinux* (Kapitel 3.2 und 3.3) und zuletzt mit dem *extended Berkeley Packet Filter* eine moderne Innovation zur Überwachung gesamter Nodes (Kapitel 3.4) betrachtet. 
 
 ## 3.1 Grundlegende Konfiguration
 
@@ -232,10 +230,8 @@ In Kubernetes lassen sich über den ``securityContext`` SELinux-Labels zuweisen.
 
 ## 3.4 Extended Berkeley Packet Filter mit Cilium
 
-- Konfiguration
-- Netzwerk
-- Side-Car Container
+Seit einigen Jahren ist es möglich mit dem extended Berkeley Packet Filter (eBPF) beliebige Events im Kernel auszuwerten und Funktionalität basierend auf diesen hinzuzufügen. Traditionell hätte dafür Zusatzfunktionalität in den Linux Kernel direkt geschrieben oder in einem Kernel Modul ausgelagert werden müssen. In beiden Fällen (abgesehen davon, dass der erste wenn überhaupt nach Jahren erst eintreten würde) ist bei Programmierfehlern mit einer maßgeblichen Beeinträchtigung des Kernels selbst zu rechnen; Kernel-Module müssten für neue Kernelversionen stetig aktualisiert werden. Dahingegen sind eBPF-Programme über den eBPF-Verifier sicher (d.h. sie terminieren auf jeden Fall) und mithilfe von CO-RE (Compile Once Run Anywhere) oder Linux-Headern unabhängig von der Kernelversion. Während es komplex ist eigenhändig eBPF-Programme für den Kernel zu schreiben, gibt es bereits eine Vielzahl von [Programmen](https://ebpf.io/applications), welche Detailwissen über den Kernel selbst über eine abstrahierte Schnittstelle verbergen. [Rice22]
 
-- im Kontext eines Kubernetes-Clusters
+Ein konkretes Beispiel für den Einsatz von eBPF wäre im Sicherheitsmonitoring. Observability-Aufgaben werden innerhalb eines Pods oftmals in einen Sidecar-Container ausgelagert. Das Problem hierbei ist allerdings, dass unerwünscht ausgerollte (maliziöse) nicht erkannt werden. Diesem Defizit unterliegt eine Monitoring-Lösung mit eBPF nicht, da hierbei Events auf Ebene des Kernels (und nicht einzelnen Pods) ausgewertet werden. 
 
-
+Mithilfe von eBPF werden nicht nur sicherheitsrelevante Aufgaben umgesetzt. Das Open-Source-Projekt [Cilium](cilium.io) zeigt dies in seinem breiten Anwendungsspektrum für eBPF auf. Weitere interessante Projekte findet man unter [eBPF]. Beispielsweise zentralisiert[Falco](https://falco.org/) die Auswertung von syscalls und vereinfacht somit einen vergleichbaren Ansatz mithilfe von *seccomp*. 
