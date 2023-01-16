@@ -201,7 +201,33 @@ Zuvor muss allerdings sichergestellt werden, dass dieses AppArmor-Profil auch au
 
 ### 3.3.2 SELinux
 
-*Security Enhanced Linux* (SELinux) gewährt basierend auf zusätzlichen Datei-Labels Zugriff...
+*Security Enhanced Linux* (SELinux) setzt MAC basierend auf zusätzlichen Labels durch. Allen Prozessen (Subjekten) und Dateien (Objekten) werden eine Menge von Labels zugeordnet. Mithilfe von *Policy Rules* werden Restriktionen für Labels (also einer Gruppe von Prozessen) auf andere Labels (erlaubte Klassen sind: ``file``, ``dir``, ``sock_file``, ``tcp_socket`` und ``process``) definiert. Die generelle Syntax sieht folgendermaßen aus:
+
+```
+<Aktion> <Quell-Label> <Ziel-Label>:<Klasse> <Rechte>
+```
+
+Zum Beispiel könnte man mit:
+
+```
+ALLOW apache_process apache_log:FILE READ;
+```
+
+allen mit ``apache_process`` markierten Prozessen Schreibrechte auf ``apache_log`` erteilen. Dabei agiert SELinux im Whitelisting-Ansatz. Ebenfalls wäre es möglich mit  
+```
+ALLOW apache_process http_port_t:tcp_socket name_bind;
+```
+
+einem Prozess zu erlauben über den HTTP-Port (default 80) zu kommunizieren. Normalerweise werden Regeln mit den CLI-Tools ``semanage`` und ``sepolicy`` etabliert.
+
+Zusammengefasst ist SELinux ein äußerst umfangreiches Werkzeug, um die Interaktion von Prozessen mit Systemressourcen feingranular zu regulieren. Aufgrund seiner Komplexität und dem damit verbundenen Potenzial zu Fehlkonfigurationen ist SELinux allerdings vermutlich weniger attraktiv als AppArmor. Es ist generell einfacher und intuitiver anhand eines Profils für einen spezifischen Container (bzw. Gruppe von Containern) dessen Rechte zu definieren, als jeweils auf allen Nodes eines Clusters neue Labels anlegen zu müssen.
+
+In Kubernetes lassen sich über den ``securityContext`` SELinux-Labels zuweisen. Einige hilfreiche Quellen sind:
+
+- [Zuordnung von Labels zu Containern in Kubernetes](https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#assign-selinux-labels-to-a-container)
+- [Ausführliche SELinux-Klassen Dokumentation](https://selinuxproject.org/page/ObjectClassesPerms#common_socket)
+- [Einführungspräsentation in SELinux von Miroslav Grepl](https://mgrepl.fedorapeople.org/PolicyCourse/writingSELinuxpolicy_MUNI.pdf)
+- [RedHat SELinux-Dokumentation](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/using_selinux/index)
   
 
 ## 3.4 Extended Berkeley Packet Filter mit Cilium
