@@ -57,6 +57,8 @@ Sowohl Harbor, als auch Nexus können mit als Helm Repository verwendet werden.
 
 ## 4.4 Admission Control
 
+
+
 (Connaiseur, OPA)
 
 ## 4.5 Image Scanning
