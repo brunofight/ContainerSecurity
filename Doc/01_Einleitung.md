@@ -18,4 +18,4 @@ Die Cloud Native Computing Foundation (CNCF) untersucht ähnlich zu dieser Ausar
 
 Das Dokument Container Security entstand ursprünglich aus einem Masterprojekt an der HTWK, welches zugleich als Recherche und Grundlage zu interessanten Themen für eine Masterarbeit verwendet wurde. Als solches ist die Dokumentation (Stand Januar 2023) noch nicht vollständig. Insbesondere sind in den Kapiteln 5-7 noch weitere Ausarbeitungen erforderlich. Hinweise zur weiteren Bearbeitung des Inhalts wurden am Anfang dieser Kapitel ergänzt.
 
-Die Dokumentation wurde im Auftrag einer öffentlichen Institution verfasst und steht somit auch der Öffentlichkeit ohne Einschränkung zur Verfügung steht.
+Die Dokumentation wurde im Auftrag einer öffentlichen Institution verfasst und steht somit auch der Öffentlichkeit ohne Einschränkung zur Verfügung.
