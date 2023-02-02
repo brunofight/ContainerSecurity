@@ -118,8 +118,8 @@ CMD ["hello_express.js"]
 
 Die übliche Verwendung von ``docker build`` zur Erstellung von Container Images ist mit Vorsicht zu betrachten. Schließlich übersetzt das CLI-Tool *docker* lediglich den Befehl für den *Docker Daemon*, welcher bekanntermaßen unter dem Root-User läuft. Für die Erzeugung von Container Images sind jedoch keine administrativen Rechte erforderlich (sondern nur für das Deployment). Dementsprechend wäre ein Tool für *rootless builds* (bzw. *daemonless builds*) in Erwägung zu ziehen (bspw. [buildah](https://github.com/containers/buildah) oder [podman](https://docs.podman.io/en/latest/)). [Rice20]
 
+Zuletzt ist für die Überprüfung von Build-Dateien [KICS](kics.io) (Keeping Inrastructure as Code secure) zu erwähnen. Im Gegensatz zum *Image Scanning* werden nicht bereits erzeugte Container Images geprüft, sondern die zugehörigen "Bauanleitungen". KICS lässt sich in die CI/CD-Pipeline integrieren und unterstützt derzeit bzgl. containerisierter Infrastruktur Dockerfiles, Kubernetes und Helm.
 
-- kics
 
 
 
