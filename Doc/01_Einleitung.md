@@ -10,11 +10,11 @@ Das Ziel dieser Recherchearbeit liegt folglich einerseits in der Erarbeitung der
 
 Im Rahmen der Arbeit werden sowohl Aspekte der Sicherheit von Containern zur Laufzeit (Kapitel 3), als auch deren sichere Bereitstellung im Rahmen der Software-Supply-Chain (Kapitel 4) untersucht. Zusätzlich verdeutlicht Kapitel 5 in Referenzangriffsszenarien, wie böswillige Akteure undurchdachte Container-Infrastrukturen ausnutzen könnten. Abschließend werden in Kapitel 7 eine Reihe hilfreicher Tools mit deren Anwendungsmöglichkeiten aufgeführt.
 
-# 1.1 Verwandte Arbeiten
+## 1.1 Verwandte Arbeiten
 
 Die Cloud Native Computing Foundation (CNCF) untersucht ähnlich zu dieser Ausarbeitung Sicherheitsaspekte containerisierter Infrastrukturen auf Basis ihrer Integrationsstufe innerhalb der CI/CD-Pipeline. Zusammengefasst findet man diese im [Cloud Native Security Whitepaper](https://github.com/cncf/tag-security/tree/main/security-whitepaper/v2). Im Gegensatz zur in Folge präsentierten Analyse bleibt das CNCF Whitepaper in Bezug auf eingesetzte Technologien generisch und zeigt keine Einsatzszenarien auf.
 
-# 1.2 Information zur Dokumentation und weiteren Bearbeitung
+## 1.2 Information zur Dokumentation und weiteren Bearbeitung
 
 Das Dokument Container Security entstand ursprünglich aus einem Masterprojekt an der HTWK, welches zugleich als Recherche und Grundlage zu interessanten Themen für eine Masterarbeit verwendet wurde. Als solches ist die Dokumentation (Stand Januar 2023) noch nicht vollständig. Insbesondere sind in den Kapiteln 5-7 noch weitere Ausarbeitungen erforderlich. Hinweise zur weiteren Bearbeitung des Inhalts wurden am Anfang dieser Kapitel ergänzt.
 
