@@ -57,7 +57,11 @@ Sowohl Harbor, als auch Nexus können mit als Helm Repository verwendet werden.
 
 ## 4.4 Admission Control
 
+Mithilfe eines *Admission Controllers* können feingranulare Policies für die Erstellung von Ressourcen in einem Cluster festgelegt werden. Insbesondere lässt sich hiermit prüfen, ob ein Container Image bestimmte Spezifikationen erfüllt, bevor dieses im Cluster bereitgestellt wird (bspw. Signaturprüfung s. 4.1). [Rice20]
 
+Admission Controller werden in zwei Kategorien unterteilt: *Validating* und *Mutating*. Dabei eignen sich *Mutating Admission Controller* für Automationsaufgaben, wie die automatische Zuweisung einer ``DefaultStorageClass`` wenn in einem *Persistent Volume Claim* keine spezifiziert wurde. 
+
+Kubernetes stellt eine geringe Menge von optionalen *Admission Controllers* zur Verfügung. Im Allgemeinen reichen diese jedoch nicht aus, um alle gewünschten Policies im Cluster abzubilden. Stattdessen kann ein externer *Admission Controller* als Webhook in der Kubernetes API eingebunden werden, der sämtliche Anfragen an das Cluster validiert und/oder abändert. 
 
 (Connaiseur, OPA)
 
