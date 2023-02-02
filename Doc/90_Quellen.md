@@ -17,6 +17,7 @@
 - [HTCap], [Linux Capabilities](https://book.hacktricks.xyz/linux-hardening/privilege-escalation/linux-capabilities), Carlos Polop
 - [Jusc22], [Linux kernel system calls for all architectures](https://marcin.juszkiewicz.com.pl/download/tables/syscalls.html), Marcin Juszkiewicz, 27.11.2022
 - [K8S_AA], [Restrict a Container's Access to Resources with AppArmor](https://kubernetes.io/docs/tutorials/security/apparmor/), 08.10.2022
+- [K8S_AC], [Admission Controllers Reference](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/), 30.01.2023
 - [K8S_Arc], [Kubernetes Components](https://kubernetes.io/docs/concepts/overview/components/), 24.10.2022
 - [K8S_IMG], [Images](https://kubernetes.io/docs/concepts/containers/images/), 13.11.2022
 - [K8S_NET], [Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/), 22.12.2022
