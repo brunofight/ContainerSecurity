@@ -116,7 +116,10 @@ EXPOSE 3000
 CMD ["hello_express.js"]
 ```
 
-- kics, rootless builds, buildah
+Die übliche Verwendung von ``docker build`` zur Erstellung von Container Images ist mit Vorsicht zu betrachten. Schließlich übersetzt das CLI-Tool *docker* lediglich den Befehl für den *Docker Daemon*, welcher bekanntermaßen unter dem Root-User läuft. Für die Erzeugung von Container Images sind jedoch keine administrativen Rechte erforderlich (sondern nur für das Deployment). Dementsprechend wäre ein Tool für *rootless builds* (bzw. *daemonless builds*) in Erwägung zu ziehen (bspw. [buildah](https://github.com/containers/buildah) oder [podman](https://docs.podman.io/en/latest/)). [Rice20]
+
+
+- kics
 
 
 
