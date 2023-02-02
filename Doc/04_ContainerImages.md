@@ -61,9 +61,13 @@ Mithilfe eines *Admission Controllers* können feingranulare Policies für die E
 
 Admission Controller werden in zwei Kategorien unterteilt: *Validating* und *Mutating*. Dabei eignen sich *Mutating Admission Controller* für Automationsaufgaben, wie die automatische Zuweisung einer ``DefaultStorageClass`` wenn in einem *Persistent Volume Claim* keine spezifiziert wurde. 
 
-Kubernetes stellt eine geringe Menge von optionalen *Admission Controllers* zur Verfügung. Im Allgemeinen reichen diese jedoch nicht aus, um alle gewünschten Policies im Cluster abzubilden. Stattdessen kann ein externer *Admission Controller* als Webhook in der Kubernetes API eingebunden werden, der sämtliche Anfragen an das Cluster validiert und/oder abändert. 
+Kubernetes stellt eine geringe Menge von optionalen *Admission Controllers* zur Verfügung [K8S_AC]. Im Allgemeinen reichen diese jedoch nicht aus, um alle gewünschten Policies im Cluster abzubilden. Stattdessen kann ein externer *Admission Controller* als Webhook in der Kubernetes API eingebunden werden, der sämtliche Anfragen an das Cluster validiert und/oder abändert. Zwei bekannte Optionen hierfür sind:
 
-(Connaiseur, OPA)
+- [Open Policy Agent Gatekeeper](https://open-policy-agent.github.io/gatekeeper/website/docs/) 
+  - Erstellung von Regeln in Rego-Syntax
+  - große vordefinierte Regelbibliothek
+- [Connaisseur](https://sse-secure-systems.github.io/connaisseur/v2.7.0/) 
+  - spezialisiert auf die Überprüfung von Image Signaturen
 
 ## 4.5 Image Scanning
 
