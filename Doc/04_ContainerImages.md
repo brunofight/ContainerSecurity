@@ -71,15 +71,9 @@ Kubernetes stellt eine geringe Menge von optionalen *Admission Controllers* zur 
 
 ## 4.5 Image Scanning
 
-aqua, trivy
+Container Image Scanning lässt sich am besten mit der Arbeitsweise eines agentenbasierten Schwachstellenscanners vergleichen. Das heißt beide haben die Innensicht auf ein vorliegendes (Datei-)System, prüfen auf Schwachstellen basierend auf Versionsnummern von Software, -Abhängigkeiten und Miskonfigurationen und gleichen diese mit einer Datenbank bekannter Schwachstellen ab (z.B. die National Vulnerability Database). Dabei weisen Container Image Scanner einen großen Vorteil gegenüber hostbasierten Schwachstellenscannern auf. Unter der Bedingung von *Immutable Containers* muss nur ein Image für ein gesamtes Deployment identischer Container geprüft werden. [Rice20]
 
-```
-trivy fs
-trivy image
-trivy repo
-```
-
-- Container Registry
+Image Scanner können sowohl in der Regel sowohl in der CI/CD-Pipeline, als auch in einer Registry eingebunden werden. Dabei ist die Schwachstellenbehebung basierend auf den Informationen eines Scans ein Thema für sich. Dazu muss zunächst ein gepatchtes Image in die Registry gebracht werden und anschließend dieses in das Kubernetes Cluster ausgerollt werden. Automationen über die Verwendung des ``:latest`` Tags und die ``AlwaysPullImage`` Policy sind denkbar.
 
 ## 4.6 Hinweise zum Build-Prozess und der Gestaltung von Images
 
